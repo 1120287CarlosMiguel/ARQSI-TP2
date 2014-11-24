@@ -19,8 +19,10 @@ namespace IDEIEditora.Models
         [DataType(DataType.Url)]
         public string URL { get; set; }
 
+        /**
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         private string API_key { get; }
+        **/
 
         public virtual ICollection<Order> Orders { get; set; }
     }
