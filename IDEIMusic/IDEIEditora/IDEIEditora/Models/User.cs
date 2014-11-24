@@ -7,7 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IDEIEditora.Models
 {
+<<<<<<< HEAD
     public abstract class User
+=======
+    public class User
+>>>>>>> f695481f6bd16cccfbd1ceda2f1081becd159c3e
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name="Username")]
