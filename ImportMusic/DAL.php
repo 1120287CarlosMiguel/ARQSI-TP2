@@ -25,7 +25,7 @@ class DAL {
     }
     
     //Funcao para inserir compra no import music
-    function order_Insert($shopName,$album,$quantity) {
+    function sale_Insert($shopName,$album,$quantity) {
         $mysqli = $this->db_connect();
 
         $sName = $mysqli->real_escape_string($shopName);
@@ -33,7 +33,7 @@ class DAL {
         $qnt = $mysqli->real_escape_string($quantity);
         
         echo "vou iserir";
-        $query = "INSERT INTO MusicShopSales(`ShopName`,`Album`,`Quantity`) VALUES ($sName,$alb,$qnt)";
+        $query = "INSERT INTO `MusicShopSales`(`ShopName`,`Album`,`Quantity`) VALUES ('$sName','$alb',$qnt)";
         
         $resutl = $mysqli->query($query);
         

@@ -1,33 +1,42 @@
 <?php
+// Pull in the NuSOAP code
+require_once('./Library/nusoap.php');
 
-//call library
-require_once('./Library/nusoap-0.9.5/lib/nusoap.php');
-$URL       = "www.test.com";
-$namespace = $URL . '?wsdl';
-//using soap_server to create server object
-$server    = new soap_server;
-$server->configureWSDL('ImportMusic', $namespace);
+// Create the server instance
+$server = new soap_server;
+// Initialize WSDL support
+$server->configureWSDL('ImportMusicWS', 'urn:ImportMusicWS', '', 'document');
 
-//register a function that works on server
-$server->register('NotifyOrder');
+$in = array('shopName' => 'xsd:string',
+            'album' => 'xsd:string',
+            'qnt' => 'xsd:int');
 
-// create the function
-function NotifyOrder($shopName,$album,$quantity)
-{
+$out = array('rowNumber' => 'xsd:int');
+// registar serviço
+$server->register("notify_sale", $in, // parâmetros de entrada
+        $out, // parâmetross de saída
+        'urn:ImportMusicWS', // namespace
+        $server->wsdl->endpoint . '#' . "Add", // soapaction
+        'document', // style
+        'literal', // use
+        'N/A' // documentation
+);
+
+// Use the request to (try to) invoke the service
+$HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
+$server->service($HTTP_RAW_POST_DATA);
+
+// Define the method as a PHP function
+function notify_Sale($shopN, $alb,$qnt) {
+    
+    include 'DAL.php';
+    
     $dal = new DAL();
     
-    if(!$shopName || !$album || !$quantity)
-    {
-        return new soap_fault("Nome = $shopName Album=$album Quantidade=$quantity");
-    }
+    $result = $dal->sale_Insert($shopN, $alb, $qnt);
     
-    $res = $dal->order_Insert($shopName, $album, $quantity);
-    
-    return $res;
+    return array('rowNumber' => $result);
 }
-// create HTTP listener
 
-if ( !isset( $HTTP_RAW_POST_DATA ) ) $HTTP_RAW_POST_DATA =file_get_contents( 'php://input' );
-$server->service($HTTP_RAW_POST_DATA);
-exit();
+// Use the request to (try to) invoke the service
 ?>
