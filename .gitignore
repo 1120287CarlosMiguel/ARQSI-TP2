@@ -16,6 +16,7 @@
 *.vspx
 
 ### NetBeans ###
+LojaPHP/nbproject/private/
 nbproject/private/
 build/
 nbbuild/
