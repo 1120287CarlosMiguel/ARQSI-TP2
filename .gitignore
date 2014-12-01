@@ -24,3 +24,8 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+LojaPHP/nbproject/project.properties
+
+LojaPHP/nbproject/private/private.xml
+
+LojaPHP/nbproject/private/private.properties
