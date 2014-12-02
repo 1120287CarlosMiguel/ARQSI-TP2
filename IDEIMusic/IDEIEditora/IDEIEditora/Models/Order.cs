@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IDEIEditora.Models
 {
     public class Order
     {
-
         public int OrderID { get; set; }
 
         [Required]
@@ -27,16 +26,10 @@ namespace IDEIEditora.Models
         [Display(Name = "Order Date")]
         public DateTime OrderDate { get; set; }
 
-        [Range(0.1,float.MaxValue)]
+        [Range(0.1, float.MaxValue)]
         public float TotalPrice { get; set; }
 
-        [Display(Name="Username")]
-        public string UserID { get; set; }
-
-        public virtual User User { get; set; }
-
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-
 
     }
 }
