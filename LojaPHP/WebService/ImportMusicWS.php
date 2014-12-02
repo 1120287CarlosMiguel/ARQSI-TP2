@@ -9,7 +9,7 @@ if ( $client->getError() ) {
 print "<h2>Soap Constructor Error:</h2><pre>".
 $client->getError()."</pre>";
 }
-$params=array("shopName"=>"Loja", "album"=>"quero te","qnt"=>3);
+$params=array("shopName"=>"LojaPHP", "album"=>"Ola","qnt"=>3);
 
 $result = $client->call( "notify_sale", array("parameters"=>$params), $ns);
 
