@@ -1,18 +1,25 @@
-﻿@model IEnumerable<MvcMusicStore.Models.Album>
+﻿@model MvcMusicStore.ViewModels.StoreIndexViewModel
 
 @{
-    ViewBag.Title = "Store";
+    ViewBag.Title = "Browse Genres";
 }
-<h3>Browser Genres</h3>
-<p>
-    Select from @Model.Count() genres:
-</p>
+
+<h2>Browse Genres</h2>
+
+<p>Select from @Model.NumberOfGenres genres</p>
 
 <ul>
-    @foreach (var genre in Model)
+    @foreach (string genreName in Model.Genres)
     {
-        <li>@Html.ActionLink(genre.genero,"Browse", new { genre = genre.genero })</li>
+        <li>
+            @Html.ActionLink(genreName, "Browse", new { genre = genreName }, null)
+
+            @if (ViewBag.Starred.Contains(genreName))
+            {
+                <img src="../../Content/Images/starred.png" alt="Starred element" />
+            }
+        </li>
     }
-
 </ul>
-
+<br />
+<h5><img src="../../Content/Images/starred.png" alt="Starred element" />Starred genres 20% Off!</h5>

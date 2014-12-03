@@ -8,25 +8,12 @@ namespace MvcMusicStore.Controllers
 {
     public class HomeController : Controller
     {
+        //
+        // GET: /Home/
         public ActionResult Index()
         {
-            ViewBag.Message = "Hello from Home";
-
-            return View();
+            return this.View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }
