@@ -46,6 +46,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -119,25 +120,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IEditoraWebService.cs" />
-    <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Album.cs" />
-    <Compile Include="Models\Artist.cs" />
-    <Compile Include="Models\CartLineItem.cs" />
-    <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\MusicShop.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\ProductManager.cs" />
-    <Compile Include="Models\ShoppingCart.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\WebUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="EditoraWebService.svc" />
+    <Content Include="EditoraWebService.svc">
+      <BrowseToURL>~/EditoraWebService.svc</BrowseToURL>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IDEIEditora.Models
 {
@@ -21,8 +21,8 @@ namespace IDEIEditora.Models
 
         public int AlbumID { get; set; }
 
-        public virtual Order Order { get; set; }
-
         public virtual Album Album { get; set; }
+
+        public virtual Order Order { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
+using System.ServiceModel.Web;
 
 namespace IDEIEditora
 {
@@ -13,8 +13,12 @@ namespace IDEIEditora
     {
         [OperationContract]
         void DoWork();
-        
+
         [OperationContract]
-        int GetCatalogo();
+        [WebInvoke(Method = "GET",
+                   ResponseFormat = WebMessageFormat.Json,
+                   BodyStyle = WebMessageBodyStyle.Wrapped,
+                   UriTemplate = "getCatalogo/{velue}")]
+        string GetCatalogo(string value);
     }
 }
