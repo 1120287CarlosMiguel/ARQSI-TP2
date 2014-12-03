@@ -1,0 +1,19 @@
+<!doctype html>
+<html ng-app="Catalogo">
+  <head>
+      <script src="../Library/angular.min.js"></script>
+      <script src="../controller/CatalogoController.js"></script>
+  </head>
+  <body>
+      <div ng-controller="CatalogoController" ng-init="getAlbuns()">
+          Search :
+          <input type="text" ng-model="tit" placeholder="filter albuns..."/>
+          <br/>
+          <div >
+              <ul ng-repeat="alb in albuns track by $index| filter:tit">
+                  <li>{{$index}}</li>
+              </ul>
+          </div>
+    </div>
+  </body>
+</html>

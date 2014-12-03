@@ -8,18 +8,20 @@
 
 class IDEIEditoraWSClient {
     
-    var $wsdl = 'http://localhost:2865/EditoraWebService.svc?wsdl';
+    private $WSDL = "http://localhost:2865/EditoraWebService.svc?wsdl";
     
-    /**
-     * Funcao para chamar via AJAX para retornar catalogo(JSON)
-     */
+    //Funcao para chamar via AJAX para retornar catalogo(JSON)
     function  __getCatalogo()
     {
-        $client = new SoapClient($wsdl);
+        try {
+        $client = new SoapClient("http://localhost:2865/EditoraWebService.svc?wsdl");
 
         $result = $client->GetCatalogo();
 
         echo "$result->GetCatalogoResult";
+        } catch (Exception $ex) {
+            echo "Editora não acessivel";
+        }
     }
     
 }
