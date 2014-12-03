@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcMusicStore.ViewModels;
 using MvcMusicStore.Models;
 
 namespace MvcMusicStore.Controllers
@@ -12,29 +13,64 @@ namespace MvcMusicStore.Controllers
         //
         // GET: /Store/
 
-        MusicStoreContext storeDB = new MusicStoreContext();
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public ActionResult Index()
         {
-            var genres = storeDB.Albuns.ToList();
-            return View(genres);
+            // Create a list of genres
+            var genres = new List<string> { "Rock", "Jazz", "Country", "Pop", "Disco" };
+
+            // Create our view model
+            var viewModel = new StoreIndexViewModel
+            {
+                NumberOfGenres = genres.Count(),
+                Genres = genres
+            };
+
+            ViewBag.Starred = new List<string> { "Rock", "Jazz" };
+
+            return this.View(viewModel);
         }
 
+
         //
-        // GET: /Store/Browse
+        // GET: /Store/Browse?genre=Disco
+
         public ActionResult Browse(string genre)
         {
-            var album = new Album { genero = genre };
-            return View(album);
+            var genreModel = genre;
+
+            var albums = new List<Album>()
+            {
+                new Album() { Title = genre + " Album 1" },
+                new Album() { Title = genre + " Album 2" }
+            };
+
+            var viewModel = new StoreBrowseViewModel()
+            {
+                Genre = genreModel,
+                Albums = albums
+            };
+
+            return this.View(viewModel);
         }
+
+
+
         //
-        // GET: /Store/Details
+        // GET: /Store/Details/5
         public ActionResult Details(int id)
         {
-           //_____ Album ou var
-            var album = new Album { title = "Album " + id };
-            return View(album);
+            var album = new Album { Title = "Sample Album" };
+
+            return this.View(album);
         }
+
+
+
 
     }
 }

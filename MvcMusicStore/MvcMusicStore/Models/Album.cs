@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace MvcMusicStore.Models
 {
     public class Album
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int albumID { get; set; }
-        public string title { get; set; }
-        public double price { get; set; }
-        public string artist { get; set; }
-        public string genero { get; set; }
+        public int AlbumID { get; set; }
+        [StringLength(50, ErrorMessage = "Title name cannot be longer than 50 characters.")]
+        
+        public string Title { get; set; }
+        public double Price { get; set; }
+        public string Artist { get; set; }
+        [StringLength(50, ErrorMessage = "Genre name cannot be longer than 50 characters.")]
+        public string Genre { get; set; }
+
     }
 }
