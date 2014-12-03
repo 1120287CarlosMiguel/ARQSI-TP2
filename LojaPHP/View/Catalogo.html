@@ -1,19 +1,77 @@
 <!doctype html>
 <html ng-app="Catalogo">
-  <head>
-      <script src="../Library/angular.min.js"></script>
-      <script src="../controller/CatalogoController.js"></script>
-  </head>
-  <body>
-      <div ng-controller="CatalogoController" ng-init="getAlbuns()">
-          Search :
-          <input type="text" ng-model="tit" placeholder="filter albuns..."/>
-          <br/>
-          <div >
-              <ol>
-                  <li ng-repeat="alb in albuns | filter:tit track by $index">{{alb.Title}}</li>
-              </ol>
-          </div>
-    </div>
-  </body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-15"/>
+        <script src="../Library/angular.min.js"></script>
+        <script src="../controller/CatalogoController.js"></script>
+        <link href="../Library/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body data-spy="scroll" data-target=".bs-sidebar">
+
+        <div class="navbar  navbar-fixed-top navbar-default  bs-docs-nav">
+            <div class="navbar-inner">
+                <div class="container"><div class="row"><div class="col-sm-1 col-md-1 logo-position-1 col-logo">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle btn_navbar_custom btn btn-default">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button><a class="navbar-brand navbar-brand-link" href="/" style="color: #0066CC">IDEIEditora</a>		
+                            </div>
+                        </div>
+                        <div class="col-sm-11 col-md-11 logo-position-1 col-nav">
+                            <form class="navbar-form navbar-right" role="search">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">?</span>
+                                        <input ng-model="tit" type="text" class="form-control" placeholder="Album filter...">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div><div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navbar-top-fixed-space " style="margin-top: 50px;">
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="bs-docs-header bs-header" style="background: #0066CC" id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-lg-8">
+                        <h1 style="color: #FFF">Catálogo</h1>
+                    </div>
+                </div>	
+            </div>
+        </div>
+
+        
+        <div class="container m-top-20">
+        <div ng-controller="CatalogoController" ng-init="getAlbuns()">
+            <div id="container" ng-if="albuns.length != 0">
+                <div id="sidebar1" ng-repeat="alb in albuns| filter:tit track by $index">
+                    <div class="row" >
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img data-src="holder.js/300x300" alt="...">
+                                <div class="caption">
+                                    <h3>Thumbnail label</h3>
+                                    <p>...</p>
+                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="mensagem.length != 0">{{mensagem}}</div>
+            </div>
+        </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="../Library/Bootstrap/js/bootstrap.min.js"></script>
+    </body>
 </html>

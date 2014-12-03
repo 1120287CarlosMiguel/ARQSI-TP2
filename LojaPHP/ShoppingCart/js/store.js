@@ -1,4 +1,4 @@
-﻿//----------------------------------------------------------------
+//----------------------------------------------------------------
 // store (contains the products)
 //
 // NOTE: nutritional info from http://www.cspinet.org/images/fruitcha.jpg
