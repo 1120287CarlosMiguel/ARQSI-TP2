@@ -1,5 +1,5 @@
-ï»¿<p class="text-info">
-    <img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.title}}"/>
+<p class="text-info">
+    <img ng-src="{{product.url}}" alt="{{product.title}}" style="height: 250px"/>
     {{product.title}}: {{product.artist}}<br />
 </p>
 
@@ -14,8 +14,8 @@
                     <td class="tdRight" colspan="3" >
                         <a href="default.htm#/cart" title="ir para o carrinho de compras" ng-disabled="cart.getTotalCount() < 1">
                             <i class="icon-shopping-cart" />
-                            <b>{{cart.getTotalCount()}}</b> artigos, <b>{{cart.getTotalPrice() | currency:"â‚¬"}}</b>
-                            <span ng-show="cart.getTotalCount(product.albumID) > 0"><br />JÃ¡ esta no carrinho</span>
+                            <b>{{cart.getTotalCount()}}</b> artigos, <b>{{cart.getTotalPrice() | currency:"¤"}}</b>
+                            <span ng-show="cart.getTotalCount(product.albumID) > 0"><br />Já esta no carrinho</span>
                         </a>
                     </td>
                 </tr>
