@@ -6,7 +6,9 @@
  * and open the template in the editor.
  */
 
-include_once './DAL.php';
+//include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'model'.DIRECTORY_SEPARATOR.'Album.php');
+
+include_once 'DAL.php';
 
 class Album {
     
@@ -28,7 +30,8 @@ class Album {
     }
 	
     function __construct1($id){
-        if($this->setID($ID)){
+        $this->dal = new DAL();
+        if($this->setID($id)){
             $this->populatedData($id);
         }
     }
@@ -37,7 +40,8 @@ class Album {
     public function getID() {return $this->albumID;}
     public function setID($ID) {
         $strquery = "SELECT * FROM Album WHERE AlbumID =".$ID;
-        if($result = $this->dal->query($strquery)){
+        $result = $this->dal->query($strquery);
+        if($result){
             $this->albumID = $ID;
             return true;
         }
@@ -82,11 +86,11 @@ class Album {
         $strquery = "SELECT * FROM Album WHERE AlbumID =".$id;
         $result = $this->dal->query($strquery);
         $recordObj = mysqli_fetch_assoc($result);
-        $this->setTitle($recordObj["title"]);
-        $this->setArtist($recordObj["artist"]);
-        $this->setGenre($recordObj["genre"]);
-        $this->setPrice($recordObj["price"]);
-        $this->setUrl($recordObj["url"]);
+        $this->setTitle($recordObj["Title"]);
+        $this->setArtist($recordObj["Artista"]);
+        $this->setGenre($recordObj["Genero"]);
+        $this->setPrice($recordObj["Price"]);
+        $this->setUrl($recordObj["ImageURL"]);
     }
     
     

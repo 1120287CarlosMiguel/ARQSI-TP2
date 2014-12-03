@@ -8,8 +8,8 @@
 
 
 // ../model/Album.php
-//include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'model'.DIRECTORY_SEPARATOR.'Album.php');
-include_once '../model/Album.php';
+include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'model'.DIRECTORY_SEPARATOR.'Album.php');
+//include_once '../model/Album.php';
 
 
 
@@ -29,6 +29,7 @@ The result of validad login
 }
 */
  
+/*
 // array for JSON response
 $response = array();
 
@@ -71,20 +72,17 @@ if (sizeof($obj->listAllBands()) > 0) {
     // echoing JSON response
     echo json_encode($response);
 }
-
-
+*/
 
 
 $objAlbum = new Album();
 $objAlbum->getAllAlbuns();
+$numItems= count($objAlbum->getAllAlbuns());
+$i=0;
 foreach($objAlbum->getAllAlbuns() as $album){
     if (is_object($album) && $album instanceof Album) {
-        $line = array();
-        $line["AlbumID"]=$album->getID();
-        $line["Title"]=$album->getTitle();
-        $line["Artist"]=$album->getArtist();
-        $line["Genre"]=$album->getGenre();
+        //new product("1", "Rock or Bust", 16, "AC DC", "Rock"),
+        echo 'new product("'.$album->getID().'", "'.$album->getTitle().'", '.$album->getPrice().' ,"'.$album->getArtist().'", "'.$album->getGenre().'", "'.$album->getUrl().'")';
+        if(!(++$i === $numItems)){echo ",\xA";}
     }
 }
-
-?>

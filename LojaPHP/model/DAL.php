@@ -9,11 +9,12 @@
 //Data Access Layer
 class DAL {
 
-    private $DB_NAME = 'i120287'; //arqsi i100916
+    private $DB_NAME = 'LojaPHP'; //arqsi i100916
     private $DB_HOST = 'localhost'; // phpdev2.dei.isep.ipp.pt localhost
-    private $DB_USER = 'i120287'; //i100916 root
-    private $DB_PASS = '6883037'; // 8410845
+    private $DB_USER = 'root'; //i100916 root
+    private $DB_PASS = ''; // 8410845
 
+    var $link = "";
     
     public function __construct() {
         $this->db_connect();
@@ -25,13 +26,15 @@ class DAL {
             //log
             return NULL; 
         }
+        $this->link=$mysqli;
         return $mysqli;
     }
     
     
     public function query($query){
-        $this->query = $query;
-  	if ($result = mysqli_query($this->link,$query))
+        //$this->query = $query;
+        $result = mysqli_query($this->link,$query);
+  	if ($result)
   	{			
             return $result;
 	} else {

@@ -11,11 +11,16 @@
 //
 function store() {
     this.products = [
-        new product("1", "Rock or Bust", 16, "AC DC", "Rock"),
+        <?php
+            include '../../controller/AlbumController.php';
+            /*
+             *   new product("1", "Rock or Bust", 16, "AC DC", "Rock"),
         new product("2", "Thriller", 8.44, "Michael Jackson", "Pop, rock, R&B"),
         new product("3", "The Dark Side of the Moon", 11.99, "Pink Floyd", "Progressive rock"),
         new product("4", "Their Greatest Hits (1971–1975)", 8.44, "Eagles", "Rock, soft rock, folk rock")
-    ];
+             */?>
+                
+      ];
 }
 store.prototype.getProduct = function (albumID) {
     for (var i = 0; i < this.products.length; i++) {
