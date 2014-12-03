@@ -1,6 +1,8 @@
 angular.module('Catalogo', [])
   .controller('CatalogoController', function($scope,$http) {
                     
+                    $scope.qntProduto = new Array();
+                    
                     $scope.getAlbuns = function () {
                                 
                                 var response = $http.get('../AJAX/IDEIEditoraAJAX.php?metodo=GetCatalogo');
@@ -17,6 +19,10 @@ angular.module('Catalogo', [])
                                     $scope.mensagem = "Erro";
                                 })
                     };
+                    
+                    $scope.changeQntProd = function (index,qnt) {
+                        $scope.qntProduto[index] = qnt;
+                    }
           
               }
   );

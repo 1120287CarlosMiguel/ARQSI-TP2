@@ -24,7 +24,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">?</span>
-                                        <input ng-model="tit" type="text" class="form-control" placeholder="Album filter...">
+                                        <input ng-model="tit" type="text" class="form-control" placeholder="Filtrar album...">
                                     </div>
                                 </div>
                             </form>
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="navbar-top-fixed-space " style="margin-top: 50px;">
             <div class="clearfix"></div>
         </div>
@@ -48,27 +48,30 @@
             </div>
         </div>
 
-        
         <div class="container m-top-20">
-        <div ng-controller="CatalogoController" ng-init="getAlbuns()">
-            <div id="container" ng-if="albuns.length != 0">
-                <div id="sidebar1" ng-repeat="alb in albuns| filter:tit track by $index">
-                    <div class="row" >
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img data-src="holder.js/300x300" alt="...">
-                                <div class="caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p>...</p>
-                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            <br/>
+            <div ng-controller="CatalogoController" ng-init="getAlbuns()">
+                <div id="container" ng-if="albuns.length != 0">
+                    <div id="sidebar1">
+                        <div class="row" >
+                            <div class="col-sm-6 col-md-3" ng-repeat="alb in albuns| filter:tit track by $index">
+                                <div class="thumbnail">
+                                    <img ng-src="{{alb.AlbumArtUrl}}"/>
+                                    <div class="caption">
+                                        <h4>{{alb.Title}}</h4>
+                                        <p>{{alb.Artist}}</p>
+                                        <p>{{alb.Genre}}</p>
+                                        <p>{{alb.Price| currency:"&euro;"}}</p>
+                                        <p>Qnt: <input type="number" style="max-width: 50px" name="qntInp" ng-model="qnt$index"
+                                                       min="0" ng-change="changeQntProd($index,qnt$index)" value="0" required></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div ng-if="mensagem.length != 0">{{mensagem}}</div>
                 </div>
-                <div ng-if="mensagem.length != 0">{{mensagem}}</div>
             </div>
-        </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
