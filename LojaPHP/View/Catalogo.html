@@ -10,9 +10,9 @@
           <input type="text" ng-model="tit" placeholder="filter albuns..."/>
           <br/>
           <div >
-              <ul ng-repeat="alb in albuns track by $index| filter:tit">
-                  <li>{{$index}}</li>
-              </ul>
+              <ol>
+                  <li ng-repeat="alb in albuns | filter:tit track by $index">{{alb.Title}}</li>
+              </ol>
           </div>
     </div>
   </body>
