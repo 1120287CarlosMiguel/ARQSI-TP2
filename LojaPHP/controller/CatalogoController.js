@@ -1,7 +1,7 @@
 angular.module('Catalogo', [])
   .controller('CatalogoController', function($scope,$http) {
                     
-                    $scope.qntProduto = new Array();
+                    $scope.carrinho = new Array();
                     
                     $scope.getAlbuns = function () {
                                 
@@ -21,7 +21,19 @@ angular.module('Catalogo', [])
                     };
                     
                     $scope.changeQntProd = function (index,qnt) {
-                        $scope.qntProduto[index] = qnt;
+                        if(qnt > 0) {
+                            prod = new Array($scope.albuns[index],qnt);
+                            $scope.carrinho[index] = prod;
+                        }
+                        else
+                        {
+                            $scope.carrinho.splice(index,1);
+                        }
+                    }
+                    
+                    $scope.checkoutCarts = function () {
+                        $("#checkout").modal("show");
+                        $("#checkout").css("z-index","1500");
                     }
           
               }
