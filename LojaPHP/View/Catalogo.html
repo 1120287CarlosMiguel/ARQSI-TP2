@@ -93,16 +93,49 @@
             <div class="modal fade" id="checkout">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">Modal title</h4>
+                        <div class="modal-header" >
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span></button>
+                            <h4 class="modal-title"><b>Carrinho</b></h4>
                         </div>
-                        <div class="modal-body">
-                            <p>One fine body&hellip;</p>
+                        <div class="modal-body" style="overflow-y: scroll; height: 300px">
+                            <table ng-if="carrinho.length > 0" border="0" class="ccm-core-commerce-cart table" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th class="ccm-core-commerce-cart-name">Nome</th>
+                                        <th class="ccm-core-commerce-cart-quantity">Quantidade</th>
+                                        <th class="ccm-core-commerce-cart-quantity">Preço Uni.</th>
+                                        <th class="ccm-core-commerce-cart-quantity">Preço</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    <tr>
+
+
+
+                                    </tr>
+                                    <tr ng-repeat="ord in carrinho">
+                                        <td class="ccm-core-commerce-cart-thumbnail"><img class="ccm-output-thumbnail" src="{{ord.AlbumArtUrl}}"  width="94" height="90"></td>
+                                        <td class="ccm-core-commerce-cart-name">{{ord.Title}}			</td>
+                                        <td class="ccm-core-commerce-cart-quantity">{{qntProdtuto[ord.Title]}}</td>
+                                        <td class="ccm-core-commerce-cart-price">{{ord.Price| currency:"&euro;"}}</td>
+                                        <td class="ccm-core-commerce-cart-price">{{ord.Price * qntProdtuto[ord.Title]| currency:"&euro;"}}</td>
+                                        <td class="ccm-core-commerce-cart-remove"><a href="#" onclick="remove">
+                                                <img src="../Icons/1417740562_delete-16.png" width="16" height="16">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="ccm-core-commerce-cart-subtotal">
+                                        <td colspan="3">&nbsp;</td>
+                                        <td class="ccm-core-commerce-cart-price">{{getTotal() | currency:"&euro;"}}</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+
+                                </tbody></table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <input type="button" ng-click="exitCheckout()" style="float: left" value="< Return to Shopping" class="ccm-core-commerce-cart-buttons-checkout btn btn-default">
+                            <input ng-if="carrinho.length > 0" type="button" style="float: right" class="ccm-core-commerce-cart-buttons-checkout btn btn-success" value="Check Out">
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
