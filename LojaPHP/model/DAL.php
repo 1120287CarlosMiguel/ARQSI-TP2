@@ -38,9 +38,46 @@ class DAL {
   	{			
             return $result;
 	} else {
-            return 0;
+            //Se entrou aqui é porque ocorreu um erro
+            echo "Erro na query :".$query."  -  ".$this->link->error;
+            return FALSE;
   	}
     }
+    
+    //$sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
+    public function insert($table,$filds,$value){
+        //$this->query = $query;
+        $query="INSERT INTO ".$table." (".$filds.") VALUE (".$value.")";
+        $result = mysqli_query($this->link,$query);
+  	if ($result)
+  	{			
+            return TRUE;
+	} else {
+            return FALSE;
+  	}
+    }
+    
+    
+    //UPDATE MyGuests SET lastname='Doe' WHERE id=2
+    public function update($table,$filds,$value,$where,$whereID){
+        //$this->query = $query;
+        $query="UPDATE INTO $table SET $filds=$value WHERE $where='$whereID'";
+        $result = mysqli_query($this->link,$query);
+  	if ($result)
+  	{			
+            return TRUE;
+	} else {
+            return FALSE;
+  	}
+    }
+    
+    
+    // Tell us what was the last id number inserted on the database
+    // this mean that we can use it if we creat new person and we need to know the id of this person to associated to user
+    public function insertID(){
+	return mysqli_insert_id($this->link);
+    }
+    
     
 
     /*
