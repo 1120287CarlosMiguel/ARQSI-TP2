@@ -24,7 +24,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">?</span>
-                                        <input ng-model="tit" type="text" class="form-control" placeholder="Album filter...">
+                                        <input ng-model="tit" type="text" class="form-control" placeholder="Filtrar album...">
                                     </div>
                                 </div>
                             </form>
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="navbar-top-fixed-space " style="margin-top: 50px;">
             <div class="clearfix"></div>
         </div>
@@ -48,27 +48,98 @@
             </div>
         </div>
 
-        
-        <div class="container m-top-20">
-        <div ng-controller="CatalogoController" ng-init="getAlbuns()">
-            <div id="container" ng-if="albuns.length != 0">
-                <div id="sidebar1" ng-repeat="alb in albuns| filter:tit track by $index">
-                    <div class="row" >
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img data-src="holder.js/300x300" alt="...">
-                                <div class="caption">
-                                    <h3>Thumbnail label</h3>
-                                    <p>...</p>
-                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <div class="container m-top-20" ng-controller="CatalogoController" ng-init="getAlbuns()">
+            <br/>
+            <div class="row ">
+                <div class="col-md-12">
+                </div>							
+            </div>
+            <div class="row ">
+                <div class="col-md-12">
+
+                    <div class="cc-cart-links btn-group">
+                        <ul class="nav nav-pills">
+                            <li class="active">
+                                <a href="#" ng-click="checkoutCarts()"><i class="glyphicon glyphicon-shopping-cart"></i> &nbsp;View Cart	&nbsp;&nbsp;&nbsp;<span class="badge pull-right">{{carrinho.length}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><br><br>		
+                </div>							
+            </div>
+            <br/>
+            <div>
+                <div id="container" ng-if="albuns.length != 0">
+                    <div id="sidebar1">
+                        <div class="row" >
+                            <div class="col-sm-6 col-md-3" ng-repeat="alb in albuns| filter:tit track by $index">
+                                <div class="thumbnail">
+                                    <img ng-src="{{alb.AlbumArtUrl}}"/>
+                                    <div class="caption">
+                                        <h4>{{alb.Title}}</h4>
+                                        <p>{{alb.Artist}}</p>
+                                        <p>{{alb.Genre}}</p>
+                                        <p>{{alb.Price| currency:"&euro;"}}</p>
+                                        <p>Qnt: <input type="number" style="max-width: 50px" name="qntInp" ng-model="qnt$index"
+                                                       min="0" ng-change="changeQntProd($index, qnt$index)" value="0" required></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div ng-if="mensagem.length != 0">{{mensagem}}</div>
                 </div>
-                <div ng-if="mensagem.length != 0">{{mensagem}}</div>
             </div>
-        </div>
+            <div class="modal fade" id="checkout">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" >
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span></button>
+                            <h4 class="modal-title"><b>Carrinho</b></h4>
+                        </div>
+                        <div class="modal-body" style="overflow-y: scroll; height: 300px">
+                            <table ng-if="carrinho.length > 0" border="0" class="ccm-core-commerce-cart table" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th class="ccm-core-commerce-cart-name">Nome</th>
+                                        <th class="ccm-core-commerce-cart-quantity">Quantidade</th>
+                                        <th class="ccm-core-commerce-cart-quantity">Preço Uni.</th>
+                                        <th class="ccm-core-commerce-cart-quantity">Preço</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    <tr>
+
+
+
+                                    </tr>
+                                    <tr ng-repeat="ord in carrinho">
+                                        <td class="ccm-core-commerce-cart-thumbnail"><img class="ccm-output-thumbnail" src="{{ord.AlbumArtUrl}}"  width="94" height="90"></td>
+                                        <td class="ccm-core-commerce-cart-name">{{ord.Title}}			</td>
+                                        <td class="ccm-core-commerce-cart-quantity">{{qntProdtuto[ord.Title]}}</td>
+                                        <td class="ccm-core-commerce-cart-price">{{ord.Price| currency:"&euro;"}}</td>
+                                        <td class="ccm-core-commerce-cart-price">{{ord.Price * qntProdtuto[ord.Title]| currency:"&euro;"}}</td>
+                                        <td class="ccm-core-commerce-cart-remove"><a href="#" onclick="remove">
+                                                <img src="../Icons/1417740562_delete-16.png" width="16" height="16">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="ccm-core-commerce-cart-subtotal">
+                                        <td colspan="3">&nbsp;</td>
+                                        <td class="ccm-core-commerce-cart-price">{{getTotal() | currency:"&euro;"}}</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+
+                                </tbody></table>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" ng-click="exitCheckout()" style="float: left" value="< Return to Shopping" class="ccm-core-commerce-cart-buttons-checkout btn btn-default">
+                            <input ng-if="carrinho.length > 0" type="button" style="float: right" class="ccm-core-commerce-cart-buttons-checkout btn btn-success" value="Check Out">
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

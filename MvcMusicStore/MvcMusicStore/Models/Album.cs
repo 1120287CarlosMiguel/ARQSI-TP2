@@ -12,8 +12,11 @@ namespace MvcMusicStore.Models
         [StringLength(50, ErrorMessage = "Title name cannot be longer than 50 characters.")]
         
         public string Title { get; set; }
+
         public double Price { get; set; }
+
         public string Artist { get; set; }
+
         [StringLength(50, ErrorMessage = "Genre name cannot be longer than 50 characters.")]
         public string Genre { get; set; }
 
