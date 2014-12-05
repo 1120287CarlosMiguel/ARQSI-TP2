@@ -160,11 +160,8 @@ shoppingCart.prototype.checkoutPayPal = function (parms, clearCart) {
 
     // global data
     var data = {
-        cmd: "_cart",
-        business: parms.merchantID,
-        upload: "1",
-        rm: "2",
-        charset: "utf-8"
+        buy: "compraAlbum",
+        totalItems: this.items.length,
     };
 
     // item data
@@ -179,7 +176,8 @@ shoppingCart.prototype.checkoutPayPal = function (parms, clearCart) {
 
     // build form
     var form = $('<form/></form>');
-    form.attr("action", "https://www.paypal.com/cgi-bin/webscr");
+    //form.attr("action", "https://www.paypal.com/cgi-bin/webscr");
+    form.attr("action", "../controller/PaymentController.php");
     form.attr("method", "POST");
     form.attr("style", "display:none;");
     this.addFormFields(form, data);

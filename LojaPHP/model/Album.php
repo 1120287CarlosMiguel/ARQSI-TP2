@@ -12,7 +12,7 @@ include_once 'DAL.php';
 
 class Album {
     
-    private $albumID, $title, $price, $artist, $genre, $url; 
+    private $albumID, $title, $price, $artist, $genre, $url,$qtd; 
     private $dal;
     
     //CONSTRUCTORES
@@ -63,6 +63,9 @@ class Album {
     public function getUrl() {return $this->url;}
     public function setUrl($ID) {$this->url = $ID;}
     
+    public function getQtd() {return $this->qtd;}
+    public function setQtd($ID) {$this->qtd = $ID;}
+    
     public function queryAlbuns() {
         $mysqli = $this->dal; if ($mysqli) {
             $strquery = "SELECT * FROM Album"; 
@@ -73,7 +76,8 @@ class Album {
     }
     
     public function getAllAlbuns(){
-        if($result = $this->queryAlbuns()){
+        $result = $this->queryAlbuns();
+        if($result){
             $arryTemp = array();
             while($row = mysqli_fetch_assoc($result)){
                 array_push($arryTemp,new Album($row["AlbumID"]));	
