@@ -42,6 +42,39 @@ class DAL {
   	}
     }
     
+    function __editora_Order_Insert() {
+        $mysqli = $this->db_connect();
+        
+        $query = "INSERT INTO `editoraorder`(`Editora`) VALUES ('IDEIEditora')";
+        
+        $mysqli->query($query);
+        $id = $mysqli->insert_id;
+        
+        return $id;
+    }
+    
+    function __editora_Order_Detail_Insert($id,$title,$price,$qnt,$art,$gen,$image,$orderID) {
+        
+        $mysqli = $this->db_connect();
+        
+        $id = $mysqli->real_escape_string($id);
+        $title = $mysqli->real_escape_string($title);
+        $price = $mysqli->real_escape_string($price);
+        $qnt = $mysqli->real_escape_string($qnt);
+        $art = $mysqli->real_escape_string($art);
+        $gen = $mysqli->real_escape_string($gen);
+        $image = $mysqli->real_escape_string($image);
+        
+        $query = "INSERT INTO `album`(`AlbumID`, `Title`, `Price`, `Quantidade`, `Artista`, `Genero`, `ImageURL`) VALUES ($id,'$title',$price,$qnt,'$art','$gen','$image') ON DUPLICATE KEY UPDATE Quantidade=Quantidade + $qnt";
+        
+        $mysqli ->query($query);
+        
+        $query = "INSERT INTO `editoraorderdetail`(`EditoraOrderID`, `AlbumID`) VALUES ($orderID,$id)";
+        $mysqli->query($query);
+        
+        $mysqli ->close();
+    }
+    
 
     /*
     // Guarda numa BD o tipo de request e o tipo (1-URl do pedido,2-pequisas,3-Tag selecionada 4-limiteTags 5-mbid (indenficador do ID musica))

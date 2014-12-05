@@ -60,7 +60,7 @@
                     <div class="cc-cart-links btn-group">
                         <ul class="nav nav-pills">
                             <li class="active">
-                                <a href="#" ng-click="checkoutCarts()"><i class="glyphicon glyphicon-shopping-cart"></i> &nbsp;View Cart	&nbsp;&nbsp;&nbsp;<span class="badge pull-right">{{carrinho.length}}</span>
+                                <a href="#" ng-click="checkoutCarts()"><i class="glyphicon glyphicon-shopping-cart"></i> &nbsp;Ver Carrinho	&nbsp;&nbsp;&nbsp;<span class="badge pull-right">{{carrinho.length}}</span>
                                 </a>
                             </li>
                         </ul>
@@ -72,7 +72,7 @@
                 <div id="container" ng-if="albuns.length != 0">
                     <div id="sidebar1">
                         <div class="row" >
-                            <div class="col-sm-6 col-md-3" ng-repeat="alb in albuns| filter:tit track by $index">
+                            <div class="col-sm-6 col-md-4" ng-repeat="alb in albuns| filter:tit track by $index">
                                 <div class="thumbnail">
                                     <img ng-src="{{alb.AlbumArtUrl}}"/>
                                     <div class="caption">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" ng-click="exitCheckout()" style="float: left" value="< Return to Shopping" class="ccm-core-commerce-cart-buttons-checkout btn btn-default">
-                            <input ng-if="carrinho.length > 0" type="button" style="float: right" class="ccm-core-commerce-cart-buttons-checkout btn btn-success" value="Check Out">
+                            <input ng-if="carrinho.length > 0" ng-click="insertEditoraOrder()" type="button" style="float: right" class="ccm-core-commerce-cart-buttons-checkout btn btn-success" value="Check Out">
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

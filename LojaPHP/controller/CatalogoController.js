@@ -5,6 +5,10 @@ angular.module('Catalogo', [])
             
                     $scope.qntProdtuto = new Array();
                     
+                    $scope.resposta = false;
+                    
+                    $scope.id = 0;
+                    
                     $scope.getAlbuns = function () {
                                 
                                 var response = $http.get('../AJAX/IDEIEditoraAJAX.php?metodo=GetCatalogo');
@@ -28,12 +32,12 @@ angular.module('Catalogo', [])
                             {
                                 $scope.carrinho.push($scope.albuns[index]);
                             }
-                            $scope.qntProdtuto[$scope.carrinho[index].Title] = qnt;
+                            $scope.qntProdtuto[$scope.albuns[index].Title] = qnt;
                         }
                         else
                         {
                             $scope.carrinho.splice($scope.carrinho.indexOf($scope.albuns[index]),1);
-                            $scope.qntProdtuto[$scope.carrinho[index].Title] = qnt;
+                            $scope.qntProdtuto[$scope.albuns[index].Title] = qnt;
                         }
                     }
                     
@@ -59,6 +63,48 @@ angular.module('Catalogo', [])
                     
                     $scope.exitCheckout = function () {
                         $("#checkout").modal("hide");
+                    }
+                    
+                    $scope.checkout = function () {
+                        var produtos = "";
+                        
+                        for(i=0;i < $scope.carrinho.length; i++ ) {
+                            
+                            var response = $http.post("../AJAX/IDEIEditoraOrderCheckout.php", {albumID : $scope.carrinho[i].AlbumID,
+                                                                                title : $scope.carrinho[i].Title,
+                                                                                price : $scope.carrinho[i].Price,
+                                                                                qnt : $scope.qntProdtuto[$scope.carrinho[i].Title],
+                                                                                art : $scope.carrinho[i].Artist,
+                                                                                gen : $scope.carrinho[i].Genre,
+                                                                                image : $scope.carrinho[i].AlbumArtUrl,
+                                                                                orderID : $scope.id});
+                                                                            
+                            response.success(function(data, status, headers, config) {s
+                                })
+                             
+                            response.error(function(data, status, headers, config) {
+                                })
+                          
+                            
+                        }
+                    }
+                    
+                    $scope.insertEditoraOrder = function () {
+                        
+                        var id = 0;
+                        
+                        var response = $http.get("../AJAX/IDEIEditoraOrderCheckout.php?metodo=newOrder");
+                                                                            
+                            response.success(function(data, status, headers, config) {
+                                    $scope.id = data;
+                                    $scope.resposta = true;
+                                    $scope.checkout();
+                                })
+                             
+                            response.error(function(data, status, headers, config) {
+                                return 0;
+                            })
+                        
                     }
           
               }

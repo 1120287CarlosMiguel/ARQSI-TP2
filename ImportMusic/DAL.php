@@ -31,8 +31,7 @@ class DAL {
         $sName = $mysqli->real_escape_string($shopName);
         $alb = $mysqli->real_escape_string($album);
         $qnt = $mysqli->real_escape_string($quantity);
-        
-        echo "vou iserir";
+
         $query = "INSERT INTO `MusicShopSales`(`ShopName`,`Album`,`Quantity`) VALUES ('$sName','$alb',$qnt)";
         
         $resutl = $mysqli->query($query);
