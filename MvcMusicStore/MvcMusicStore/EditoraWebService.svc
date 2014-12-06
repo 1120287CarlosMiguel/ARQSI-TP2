@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MvcMusicStore.EditoraWebService" CodeBehind="EditoraWebService.svc.cs" %>

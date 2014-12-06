@@ -31,7 +31,6 @@ C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStor
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.dll
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.pdb
 <<<<<<< HEAD
-C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.csprojResolveAssemblyReference.cache
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.csprojResolveAssemblyReference.cache
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\MvcMusicStore.dll.config
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\MvcMusicStore.dll
@@ -122,3 +121,7 @@ C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStor
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.Migrations.InitialCreate1.resources
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.Migrations.InitialCreate2.resources
 >>>>>>> d2cd597e6a3169ca81e04917e7232e37d9908130
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\EntityFramework.SqlServer.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\System.Web.Providers.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\EntityFramework.SqlServer.xml
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\System.Web.Providers.xml

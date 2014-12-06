@@ -45,7 +45,7 @@ namespace IDEIEditora
             a3.Title = "Saturdat Night Fever";
             a3.Artist = "Bee Gees";
             a3.Genre = "Disco";
-            a3.Price = 7.5;
+            a3.Price = 7.5  ;
             a3.AlbumArtUrl = "http://upload.wikimedia.org/wikipedia/en/0/0c/TheBeeGeesSaturdayNightFeveralbumcover.jpg";
             
             Album a4 = new Album();

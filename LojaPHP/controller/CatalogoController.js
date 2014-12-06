@@ -98,7 +98,7 @@ angular.module('Catalogo', [])
                             response.success(function(data, status, headers, config) {
                                     $scope.id = data;
                                     $scope.resposta = true;
-                                    $scope.checkout();
+                                    $scope.exitCheckout();
                                 })
                              
                             response.error(function(data, status, headers, config) {
