@@ -22,6 +22,17 @@
                     </nav>
                 </div>
             </div>
+            <div style="width: auto;">
+                @if (Request.IsAuthenticated)
+                {
+                    <strong>@Html.Encode(User.Identity.Name)</strong>
+                    @Html.ActionLink("Log Out", "Logout", "User")
+                }
+                else { @Html.ActionLink("Register", "Registration", "User")
+                    <span>|</span>
+                    @Html.ActionLink("Log In", "Login", "User")
+                }
+            </div>
         </header>
         <div id="body">
             @{Html.RenderAction("GenreMenu", "Store");}
