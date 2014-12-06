@@ -1,0 +1,29 @@
+﻿@model MvcMusicStore.Models.User
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true,"Create user failed, check your fiels.")
+
+    <fieldset>
+        <legend>Create new user</legend>
+            <div>
+                @Html.LabelFor(m => m.Email)
+            </div>
+            <div>                
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(u=>u.Email)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Password)
+            </div>
+            <div>                
+                @Html.PasswordFor(m => m.Password)
+            </div>
+        <input type="submit" value="Create User" />
+    </fieldset>
+}
