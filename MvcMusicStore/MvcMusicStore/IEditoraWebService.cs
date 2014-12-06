@@ -17,6 +17,9 @@ namespace MvcMusicStore
 
         [OperationContract]
         string GetCatalogo(string value);
+
+        [OperationContract]
+        string getAPI_Key(string username, string password);
         
     }
 }

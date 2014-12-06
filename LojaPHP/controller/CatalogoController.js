@@ -70,16 +70,17 @@ angular.module('Catalogo', [])
                         
                         for(i=0;i < $scope.carrinho.length; i++ ) {
                             
-                            var response = $http.post("../AJAX/IDEIEditoraOrderCheckout.php", {albumID : $scope.carrinho[i].AlbumID,
+                            var response = $http.post("../AJAX/IDEIEditoraOrderCheckout.php", {albumID : $scope.carrinho[i].AlbumId,
                                                                                 title : $scope.carrinho[i].Title,
                                                                                 price : $scope.carrinho[i].Price,
                                                                                 qnt : $scope.qntProdtuto[$scope.carrinho[i].Title],
-                                                                                art : $scope.carrinho[i].Artist,
-                                                                                gen : $scope.carrinho[i].Genre,
+                                                                                art : $scope.carrinho[i].Artist.Name,
+                                                                                gen : $scope.carrinho[i].Genre.Name,
                                                                                 image : $scope.carrinho[i].AlbumArtUrl,
                                                                                 orderID : $scope.id});
                                                                             
-                            response.success(function(data, status, headers, config) {s
+                            response.success(function(data, status, headers, config) {
+                                alert(data);
                                 })
                              
                             response.error(function(data, status, headers, config) {
@@ -97,7 +98,7 @@ angular.module('Catalogo', [])
                                                                             
                             response.success(function(data, status, headers, config) {
                                     $scope.id = data;
-                                    $scope.resposta = true;
+                                    $scope.checkout();
                                     $scope.exitCheckout();
                                 })
                              
