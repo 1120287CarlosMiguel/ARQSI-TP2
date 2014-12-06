@@ -60,8 +60,6 @@ class Order {
         return $arrayObjOrderDetail;
     }
 
-    
-
     private function populatedData($id){
         $strquery = "SELECT * FROM Order WHERE OrderID =".$id;
         $result = $this->dal->query($strquery);
@@ -72,16 +70,19 @@ class Order {
     }
     
     public function creatOrder($utilizadorID){
-        $fields="UtilizadorID";
-        $value="'$utilizadorID'";
-        $this->dal->insert("OrderID",$fields,$value);
+        $fields="OrderID, PrecoTotal, UtilizadorID";
+        $value="NULL, '0', '$utilizadorID'";
+        $this->dal->insert("Order",$fields,$value);
         $id=$this->dal->insertID(); //get ultimo ID inserido
         $this->setOrderID($id);
         return TRUE;
     }
     
     public function updateOrderPrecoTotal($precoTotal){
-        if($this->dal->update("Order","PrecoTotal",$precoTotal,"OrderID", $this->getOrderID())) return TRUE;
+        if($this->dal->update("Order","PrecoTotal",$precoTotal,"OrderID", $this->getOrderID())){
+            $this->setPrecoTotal($precoTotal);
+            return TRUE;
+        }
         return FALSE;
     }
 
