@@ -95,7 +95,35 @@ class Album {
         $this->setGenre($recordObj["Genero"]);
         $this->setPrice($recordObj["Price"]);
         $this->setUrl($recordObj["ImageURL"]);
+        $this->setQtd($recordObj["Quantidade"]);
     }
     
+    public function removeAlbum($qtd){
+        $endQtd = $this->getQtd() - $qtd;
+        if ($endQtd >= 0) {
+            if ($this->dal->update("Album", "Quantidade", $this->getQtd() - $qtd, "AlbumID", $this->getID())) {
+                $this->setQtd($qtd);
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+    
+    public function addAlbum($qtd){
+        $endQtd = $this->getQtd() + $qtd;
+        if ($this->dal->update("Album", "Quantidade", $this->getQtd() - $qtd, "AlbumID", $this->getID())) {
+            $this->setQtd($qtd);
+            return TRUE;
+        }
+        return FALSE;
+    }
+    
+    //isVisable para caso Albuns esteja igual a zero e nao ser listado
+    public function isVisable(){
+        if($this->getQtd()<=0){
+            return FALSE;
+        }
+        return TRUE;
+    }
     
 }

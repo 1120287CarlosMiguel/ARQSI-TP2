@@ -35,49 +35,80 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'m
     [amount_3] => 10.99
 )
  */
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
-
-$qtdALbumEnough = TRUE;
 
 
-//VAlidar se existe CD's suficentes para satisfazer a compra
-if(isset($_POST)){
-    for ($i=1; $i<=$_POST["totalItems"]; $i++)
-    {
-        $itemNumber = $_POST['item_number_'.$i];
-        $quantity = $_POST['quantity_'.$i];
-        
-        $album = new Album($itemNumber);
-        if(!($album->getQtd()<=$quantity)){
-            //Entao podes comprar
-            $qtdALbumEnough=FALSE;
-            echo "Não existe CD's suficente deste album ".$album->getTitle()." só existem ".$album->getQtd();
+
+
+class PaymentController {
+
+    private $objOrder;
+    private $msgError="";
+
+
+    public function __construct() {
+
+    }
+    
+    public function checkOut(){
+        if($this->validateEnoughCDs()){
+            return ($this->makeOrder());
         }
+        return FALSE;
     }
-}
 
 
-if($qtdALbumEnough){
-    $objOrder = new Order();
-    $objOrder->creatOrder($utilizadorID);
-    $totalPrice=0;
-    for ($i=1; $i<=$_POST["totalItems"]; $i++)
-    {
-        $itemNumber = $_POST['item_number_'.$i];
-        $quantity = $_POST['quantity_'.$i];
-        $album = new Album($itemNumber);
-        $price = $album->getPrice();
-        $objOrder->addOrderDetail($itemNumber, $qtd, $price);
-        $totalPrice=$price;
+    //VAlidar se existe CD's suficentes para satisfazer a compra
+    private function validateEnoughCDs(){
+        if(isset($_POST)){
+            for ($i=1; $i<=$_POST["totalItems"]; $i++)
+            {
+                $itemNumber = $_POST['item_number_'.$i];
+                $quantity = $_POST['quantity_'.$i];
+                $album = new Album($itemNumber);
+                if($album->getQtd()<=$quantity){
+                     $this->msgError=" não existe CD's suficente deste album ".$album->getTitle()." só existem ".$album->getQtd()." e estão a tentar ser comprados ".$quantity;
+                    return FALSE;
+                }
+            }
+            return TRUE;
+        }
+        return FALSE;
     }
-    $objOrder->updateOrderPrecoTotal($totalPrice);
     
-    $arrayOrderDatail = $objOrder->getAllOrderDetails();
-    
-    foreach($arrayOrderDatail as $orderDetail){
-        echo $orderDetail->getAlbumObject()->getTitle()." $orderDetail->getQtd() $orderDetail->getPreco()()";
+    private function makeOrder(){
+        $objOrder = new Order();
+        $objOrder->creatOrder(1); //$utilizadorID ALERTA por aqui Sessisao user
+        $totalPrice = 0;
+        for ($i = 1; $i <= $_POST["totalItems"]; $i++) {
+            $itemNumber = $_POST['item_number_' . $i];
+            $quantity = $_POST['quantity_' . $i];
+            $album = new Album($itemNumber);
+            $price = $album->getPrice();
+            $objOrder->addOrderDetail($itemNumber, $quantity, $price);
+            $totalPrice= $totalPrice+$price*$quantity;
+        }
+        $objOrder->updateOrderPrecoTotal($totalPrice);
+        $this->objOrder=$objOrder;
+        return true;
     }
+    
+    //retorna array com todas as ordens com details
+    public function getAllOrderDetails(){
+        return $this->objOrder->getAllOrderDetails();
+    }
+    
+    public function getPrecoTotal(){
+        return $this->objOrder->getPrecoTotal();
+    }
+
+    public function getError(){
+        return $this->msgError;
+    }
+    
+    public function getAlbumTitle($id){
+        $albumObj = new Album($id);
+        return $albumObj->getTitle();
+    }
+    
     
 }
