@@ -81,7 +81,8 @@ class DAL {
         $query="INSERT INTO ".$this->DB_NAME.".".$table." (".$filds.") VALUES (".$value.")";
         $result = mysqli_query($this->link,$query);
   	if ($result)
-  	{			
+  	{
+            //echo "<br/>sucesso $query <br>\n";
             return TRUE;
 	} else {
             echo "<br/>log erro $query <br>\n";
