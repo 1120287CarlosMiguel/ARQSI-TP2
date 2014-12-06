@@ -31,7 +31,6 @@ C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStor
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.dll
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.pdb
 <<<<<<< HEAD
-<<<<<<< HEAD
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\obj\Debug\MvcMusicStore.csprojResolveAssemblyReference.cache
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\MvcMusicStore.dll.config
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\MvcMusicStore.dll
@@ -126,5 +125,4 @@ C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\EntityFra
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\System.Web.Providers.dll
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\EntityFramework.SqlServer.xml
 C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\bin\System.Web.Providers.xml
-=======
 >>>>>>> d61b68e9e35031412679159d4fef5c467dbf6c0b

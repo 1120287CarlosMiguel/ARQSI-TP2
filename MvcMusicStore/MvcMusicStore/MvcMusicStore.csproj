@@ -42,7 +42,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Reference Include="DotNetOpenAuth.AspNet">
       <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
     </Reference>
@@ -68,8 +67,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-=======
->>>>>>> d61b68e9e35031412679159d4fef5c467dbf6c0b
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -157,7 +154,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
-<<<<<<< HEAD
     <Compile Include="DAL\MusicStoreContext.cs" />
     <Compile Include="EditoraWebService.svc.cs">
       <DependentUpon>EditoraWebService.svc</DependentUpon>
@@ -167,11 +163,6 @@
     </Compile>
     <Compile Include="IEditoraWebService.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-=======
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
->>>>>>> d61b68e9e35031412679159d4fef5c467dbf6c0b
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\Genre.cs" />
