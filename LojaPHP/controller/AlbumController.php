@@ -81,8 +81,10 @@ $numItems= count($objAlbum->getAllAlbuns());
 $i=0;
 foreach($objAlbum->getAllAlbuns() as $album){
     if (is_object($album) && $album instanceof Album) {
-        //new product("1", "Rock or Bust", 16, "AC DC", "Rock"),
-        echo 'new product("'.$album->getID().'", "'.$album->getTitle().'", '.$album->getPrice().' ,"'.$album->getArtist().'", "'.$album->getGenre().'", "'.$album->getUrl().'")';
-        if(!(++$i === $numItems)){echo ",\xA";}
+        if($album->isVisable()){
+            //new product("1", "Rock or Bust", 16, "AC DC", "Rock"),
+            echo 'new product("'.$album->getID().'", "'.$album->getTitle().'", '.$album->getPrice().' ,"'.$album->getArtist().'", "'.$album->getGenre().'", "'.$album->getUrl().'")';
+            if(!(++$i === $numItems)){echo ",\xA";} 
+        }
     }
 }

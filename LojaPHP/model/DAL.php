@@ -78,12 +78,13 @@ class DAL {
     //$sql = "INSERT INTO MyGuests (firstname, lastname, email) VALUES ('John', 'Doe', 'john@example.com')";
     public function insert($table,$filds,$value){
         //$this->query = $query;
-        $query="INSERT INTO ".$table." (".$filds.") VALUE (".$value.")";
+        $query="INSERT INTO ".$this->DB_NAME.".".$table." (".$filds.") VALUES (".$value.")";
         $result = mysqli_query($this->link,$query);
   	if ($result)
   	{			
             return TRUE;
 	} else {
+            echo "<br/>log erro $query <br>\n";
             return FALSE;
   	}
     }
@@ -92,12 +93,13 @@ class DAL {
     //UPDATE MyGuests SET lastname='Doe' WHERE id=2
     public function update($table,$filds,$value,$where,$whereID){
         //$this->query = $query;
-        $query="UPDATE INTO $table SET $filds=$value WHERE $where='$whereID'";
+        $query="UPDATE $this->DB_NAME.$table SET $filds='$value' WHERE $where='$whereID'";
         $result = mysqli_query($this->link,$query);
   	if ($result)
   	{			
             return TRUE;
 	} else {
+            echo "<br/>log erro $query <br>\n";
             return FALSE;
   	}
     }

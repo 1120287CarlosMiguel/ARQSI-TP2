@@ -32,9 +32,8 @@ class OrderDetails {
     //Usada para ela prencher se sozinha
     function __construct1($id){
         $this->dal = new DAL();
-        if($this->setOrderDetailID($id)){
-            $this->populatedData($id);
-        }
+        $this->setOrderDetailID($id);
+        $this->populatedData($id);
     }
     
     //Usado para quando se quer criar uma nova OrderDetail
@@ -60,26 +59,28 @@ class OrderDetails {
     public function getQtd() {return $this->qtd;}
     public function setQtd($ID) {$this->qtd = $ID;}
     
-    public function getPreco() {return $this->prico;}
-    public function setPreco($ID) {$this->prico = $ID;}
+    public function getPreco() {return $this->price;}
+    public function setPreco($ID) {$this->price = $ID;}
     
     public function saveNewDetail($orderID,$albumID, $qtd, $price){
         $fields="OrderID, AlbumID, Quantidade, Price";
         $value="'$orderID','$albumID', '$qtd', '$price'";
-        $this->dal->insert("OrderDetailID",$fields,$value);
+        $this->dal->insert("OrderDetail",$fields,$value);
         //get ultimo ID inserido
         $this->setOrderDetailID($this->dal->insertID());
+        $albumObj = new Album($albumID);
+        $albumObj->removeAlbum($qtd);
         return TRUE;
     }
 
     private function populatedData($id){
-        $strquery = "SELECT * FROM OrderDetailID WHERE OrderDetailID =".$id;
+        $strquery = "SELECT * FROM OrderDetail WHERE OrderDetailID =".$id;
         $result = $this->dal->query($strquery);
         $recordObj = mysqli_fetch_assoc($result);
         $this->setOrderID($recordObj["OrderID"]);
         $this->setAlbumID($recordObj["AlbumID"]);
         $this->setQtd($recordObj["Quantidade"]);
-        $this->setPrice($recordObj["Price"]);
+        $this->setPreco($recordObj["Price"]);
     }
     
     
