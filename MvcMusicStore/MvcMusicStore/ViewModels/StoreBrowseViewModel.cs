@@ -8,7 +8,7 @@ namespace MvcMusicStore.ViewModels
 {
     public class StoreBrowseViewModel
     {
-        public String Genre { get; set; }
+        public Genre Genre { get; set; }
         public List<Album> Albums { get; set; }
     }
 }
