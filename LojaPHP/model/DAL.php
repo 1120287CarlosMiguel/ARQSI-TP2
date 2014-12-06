@@ -42,7 +42,7 @@ class DAL {
   	}
     }
     
-    function __editora_Order_Insert() {
+    function  __editora_Order_Insert() {
         $mysqli = $this->db_connect();
         
         $query = "INSERT INTO `editoraorder`(`Editora`) VALUES ('IDEIEditora')";
