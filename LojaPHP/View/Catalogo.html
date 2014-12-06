@@ -77,8 +77,8 @@
                                     <img ng-src="{{alb.AlbumArtUrl}}"/>
                                     <div class="caption">
                                         <h4>{{alb.Title}}</h4>
-                                        <p>{{alb.Artist}}</p>
-                                        <p>{{alb.Genre}}</p>
+                                        <p>{{alb.Artist.Name}}</p>
+                                        <p>{{alb.Genre.Name}}</p>
                                         <p>{{alb.Price| currency:"&euro;"}}</p>
                                         <p>Qnt: <input type="number" style="max-width: 50px" name="qntInp" ng-model="qnt$index"
                                                        min="0" ng-change="changeQntProd($index, qnt$index)" value="0" required></p>

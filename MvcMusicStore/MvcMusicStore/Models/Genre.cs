@@ -16,16 +16,21 @@
 
 namespace MvcMusicStore.Models
 {
+    using Newtonsoft.Json;
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
 
+    [DataContract]
     public class Genre
     {
         public int GenreId { get; set; }
 
+        [DataMember]
         public string Name { get; set; }
 
         public string Description { get; set; }
 
+        [JsonIgnore]
         public ICollection<Album> Albums { get; set; }
     }
 }
