@@ -31,23 +31,6 @@ namespace MvcMusicStore
             return json;
         }
 
-
-        public int CreateOrder(string api_key, double total)
-        {
-            MusicStoreEntities db = new MusicStoreEntities();
-
-            var user = db.Users.Where(u => u.PasswordSalt == api_key).FirstOrDefault();
-
-            if (user != null) 
-            {
-                var order = new Order();
-
-                db.Orders.Add
-            }
-
-
-        }
-
         public void finishOrder()
         {
             throw new NotImplementedException();
@@ -71,6 +54,12 @@ namespace MvcMusicStore
             }
 
             return "Utilizador Desconhecido";
+        }
+
+
+        public int CreateOrder()
+        {
+            throw new NotImplementedException();
         }
     }
 }
