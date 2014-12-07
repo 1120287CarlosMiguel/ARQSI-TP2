@@ -26,10 +26,14 @@ namespace MvcMusicStore.Models
         [Display(Name = "Order Date")]
         public DateTime OrderDate { get; set; }
 
+        public Guid UserID { get; set; }
+
         [Range(0.1, float.MaxValue)]
         public float TotalPrice { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public virtual User User { get; set; }
 
         
 

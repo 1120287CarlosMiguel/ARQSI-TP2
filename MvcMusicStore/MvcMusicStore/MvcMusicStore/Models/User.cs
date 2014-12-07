@@ -24,5 +24,7 @@ namespace MvcMusicStore.Models
         public string Password { get; set; }
 
         public string PasswordSalt { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
