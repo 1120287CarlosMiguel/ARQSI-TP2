@@ -59,6 +59,9 @@ namespace MvcMusicStore
                 db.Orders.Add(order);
                 db.SaveChanges();
 
+                var mail = new Mail();
+                mail.Send(user.Email);
+
                 return order.OrderID;
             }
             return -1;
@@ -84,7 +87,6 @@ namespace MvcMusicStore
 
                 db.SaveChanges();
             }
-
         }
 
 
