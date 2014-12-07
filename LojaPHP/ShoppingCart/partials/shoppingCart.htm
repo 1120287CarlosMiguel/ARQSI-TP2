@@ -1,5 +1,5 @@
-﻿<p class="text-info">
-    Este é o seu carrinho de compras<br />
+<p class="text-info">
+    O seu carrinho de compras<br />
 </p>
 
 <div class="container-fluid">
@@ -10,7 +10,7 @@
             <table class="table table-bordered">
 
                 <!-- header -->
-                <tr class="well">
+                <tr class="well" style="background-color: #2E8BCC; color: white">
                     <td><b>Artigo</b></td>
                     <td class="tdCenter"><b>Quantidade</b></td>
                     <td class="tdRight"><b>Preço</b></td>
@@ -36,12 +36,12 @@
                             ng-change="cart.saveItems()" />
                         <button 
                             class="btn btn-success" type="button" 
-                            ng-disabled="item.quantity >= 1000"
-                            ng-click="cart.addItem(item.albumID, item.title, item.price, +1)">+</button>
+                            ng-disabled="item.quantity >= item.qtdStock"
+                            ng-click="cart.addItem(item.albumID, item.title, item.price, +1, item.qtdStock)">+</button>
                         <button 
                             class="btn btn-inverse" type="button" 
                             ng-disabled="item.quantity <= 1"
-                            ng-click="cart.addItem(item.albumID, item.title, item.price, -1)">-</button>
+                            ng-click="cart.addItem(item.albumID, item.title, item.price, -1,item.qtdStock)">-</button>
                       </div>
                     </td>
                     <td class="tdRight">{{item.price * item.quantity | currency}}</td>
@@ -53,7 +53,7 @@
                 </tr>
 
                 <!-- footer -->
-                <tr class="well">
+                <tr class="well" style="background-color: #2E8BCC; color: white">
                     <td><b>Total</b></td>
                     <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
                     <td class="tdRight"><b>{{cart.getTotalPrice() | currency:"€"}}</b></td>
@@ -66,12 +66,12 @@
         <div class="span4">
             <p class="text-info">
                 <button 
-                    class="btn btn-block" 
-                    onclick="window.location.href='default.htm'">
+                    class="btn btn-block btn-primary"
+                    onclick="window.location.href='default.php'">
                     <i class="icon-chevron-left" /> Voltar a loja
                 </button>
                 <button 
-                    class="btn btn-block btn-danger" 
+                    class="btn btn-block btn-primary" 
                     ng-click="cart.clearItems()" 
                     ng-disabled="cart.getTotalCount() < 1" >
                     <i class="icon-trash icon-white" /> Limpar Carrinho
@@ -85,32 +85,11 @@
                     class="btn btn-block btn-primary"
                     ng-click="cart.checkout('PayPal')"
                     ng-disabled="cart.getTotalCount() < 1">
-                    <i class="icon-ok icon-white" /> check out using PayPal
-                </button>
-                <button 
-                    class="btn btn-block btn-primary" 
-                    ng-click="cart.checkout('Google')" 
-                    ng-disabled="cart.getTotalCount() < 1">
-                    <i class="icon-ok icon-white" /> check out using Google
+                    <i class="icon-ok icon-white" /> Check out FakeMoney
                 </button>
             </p>
 
             <br /><br />
-
-            <p class="text-info">
-                <button 
-                    class="btn btn-block btn-link"
-                    ng-click="cart.checkout('PayPal')"
-                    ng-disabled="cart.getTotalCount() < 1" >
-                    <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
-                </button>    
-                <button 
-                    class="btn btn-block btn-link" 
-                    ng-click="cart.checkout('Google')" 
-                    ng-disabled="cart.getTotalCount() < 1" >
-                    <img src="https://checkout.google.com/buttons/checkout.gif?w=168&h=44&style=white&variant=text" alt="checkoutGoogle"/>
-                </button>    
-            </p>
         </div>
     </div>
 </div>

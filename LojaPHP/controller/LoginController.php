@@ -19,16 +19,18 @@ class UserRegistedController{
     
     public function login($userID,$password){
         if($this->objUser->login($userID, $password)){
+            session_start();
             $_SESSION["login"]=TRUE;
-            $_SERVER["login_UserID"]=$this->objUser->getUserID();
-            $_SERVER["login_Name"]=$this->objUser->getName();
-            $_SERVER["login_LastName"]=$this->objUser->getLastName();
+            $_SESSION["login_UserID"]=$this->objUser->getUserID();
+            $_SESSION["login_Name"]=$this->objUser->getName();
+            $_SESSION["login_LastName"]=$this->objUser->getLastName();
             return TRUE;
         }
         return FALSE;
     }
     
     public function logout(){
+        session_start();
         session_destroy();
         return TRUE;
     }

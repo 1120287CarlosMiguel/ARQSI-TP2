@@ -13,7 +13,9 @@ if(isset($_POST["submit"])){
     
     if($objUserResgistedController->checkPostResgiter()){
         if($objUserResgistedController->register($_POST["username"], $_POST["password"], $_POST["name"], $_POST["lastName"])){
-            echo "<h1>Registo com sucesso</h1>";
+            echo "<div align='center'><h1>Registo com sucesso</h1>";
+            echo "<div><img src='../img/Dancing_Banana.gif'></div>";
+            echo "<h3><a href='Login.php'>Voltar ao Login</a></h3></div>";
             $flagShowRegiste=FALSE;
         }else{
             $msgErro="Erro a inserir os dados na base de dados";
@@ -83,10 +85,10 @@ if($flagShowRegiste){
                         <div class="col-md-6">
                             <h3 class="dark-grey">Terms and Conditions</h3>
                             <p>
-                                A clicar em "Registar" esta acordar com os termos e condições da Loja de CDs
+                                A clicar em "Registar" esta acordar com os termos e condições da Loja de CDs, acorda tambem que a nota minima para este trabalho é um 16.
                             </p>
                             <p>
-                                A expectativa deste trabalho é de receber no minimo um 20.
+                                A expectativa deste trabalho é de receber um 20.
                             </p>
                             <p>
                                 Neste site não existe dinheiro verdadeiro pelo que todas as compras seram virtuais, algo parecido com o monopolio mas ate o monopolio é mais real porque tem notas falsas em papel.

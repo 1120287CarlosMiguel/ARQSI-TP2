@@ -1,14 +1,10 @@
-<p class="text-info">
-    Bem-vindo a loja de musica.<br />
-</p>
-
 
 <table class="table table-bordered">
-    <tr class="well">
-        <td class="tdRight" colspan="4" >
-            <a href="default.htm#/cart" title="ir para o carro de compras" ng-disabled="cart.getTotalCount() < 1">
+    <tr class="well" style="background-color: #2E8BCC">
+        <td class="tdRight" colspan="5" >
+            <a href="default.php#/cart" title="ir para o carro de compras" ng-disabled="cart.getTotalCount() < 1" style="color: white">
                 <i class="icon-shopping-cart" />
-                <b>{{cart.getTotalCount()}}</b> artigo, <b>{{cart.getTotalPrice() | currency}}</b>
+                <b>{{cart.getTotalCount()}}</b> artigo, <b>{{cart.getTotalPrice() | currency:"&euro;"}}</b>
             </a>
         </td>
     </tr>
@@ -19,19 +15,22 @@
             {{product.artist}}
         </td>
         <td class="tdRight">
-            {{product.price | currency:"€"}}
+            {{product.qtdStock}}
+        </td>
+        <td class="tdRight">
+            {{product.price | currency:"&euro;"}}
         </td>
         <td class="tdCenter">
-            <a href="" ng-click="cart.addItem(product.albumID, product.title, product.price, 1)">
+            <a href="" ng-click="cart.addItem(product.albumID, product.title, product.price, 1, product.qtdStock)">
                 Adicionar
             </a>
         </td>
     </tr>
-    <tr class="well">
-        <td class="tdRight" colspan="4">
-            <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+    <tr class="well" style="background-color: #2E8BCC">
+        <td class="tdRight" colspan="5">
+            <a href="default.php#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1" style="color: white">
                 <i class="icon-shopping-cart" />
-                <b>{{cart.getTotalCount()}}</b> artigos, <b>{{cart.getTotalPrice() | currency:"€"}}</b>
+                <b>{{cart.getTotalCount()}}</b> artigos, <b>{{cart.getTotalPrice() | currency:"&euro;"}}</b>
             </a>
         </td>
     </tr>

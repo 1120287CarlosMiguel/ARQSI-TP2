@@ -10,12 +10,12 @@
             <!-- product info -->
             <table class="table table-bordered">
 
-                <tr class="well">
+                <tr class="well" style="background-color: #2E8BCC; color: white">
                     <td class="tdRight" colspan="3" >
-                        <a href="default.htm#/cart" title="ir para o carrinho de compras" ng-disabled="cart.getTotalCount() < 1">
+                        <a href="default.php#/cart" title="ir para o carrinho de compras" ng-disabled="cart.getTotalCount() < 1" style="color: white">
                             <i class="icon-shopping-cart" />
-                            <b>{{cart.getTotalCount()}}</b> artigos, <b>{{cart.getTotalPrice() | currency:"¤"}}</b>
-                            <span ng-show="cart.getTotalCount(product.albumID) > 0"><br />Já esta no carrinho</span>
+                            <b>{{cart.getTotalCount()}}</b> artigos, <b>{{cart.getTotalPrice() | currency:"&euro;"}}</b>
+                            <span ng-show="cart.getTotalCount(product.albumID) > 0"><br />Ja esta no carrinho</span>
                         </a>
                     </td>
                 </tr>
@@ -35,9 +35,9 @@
                     <td class="tdCenter"><h3>{{product.genre}}</h3></td>
                     <td />
                 </tr>
-                <tr class="well">
+                <tr class="well" style="background-color: #2E8BCC; color: white">
                     <td class="tdRight" colspan="3" >
-                        <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                        <a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1" style="color: white">
                             <i class="icon-shopping-cart" />
                             <b>{{cart.getTotalCount()}}</b> artigos, <b>{{cart.getTotalPrice() | currency}}</b>
                             <span ng-show="cart.getTotalCount(product.albumID) > 0"><br />JÃ¡ esta no carrinho</span>
@@ -51,20 +51,9 @@
         <!-- buttons -->
         <div class="span4">
             <button 
-                class="btn btn-block btn-success" 
-                ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
-                <i class="icon-shopping-cart icon-white" /> Adicionar
-            </button>
-            <button 
-                class="btn btn-block btn-danger" 
-                ng-click="cart.addItem(product.sku, product.name, product.price, -10000)"
-                ng-disabled="cart.getTotalCount(product.sku) < 1">
-                <i class="icon-trash icon-white" /> Remover
-            </button>
-            <button 
-                class="btn btn-block" 
+                class="btn btn-block btn-primary" 
                 onclick="window.location.href=''">
-                <i class="icon-chevron-left" /> Volta a loja
+                <i class="icon-chevron-left" /> Voltar a loja
             </button>
         </div>
     </div>

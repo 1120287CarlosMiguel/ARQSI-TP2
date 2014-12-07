@@ -10,6 +10,6 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATO
 $objLoginController = new UserRegistedController();
 
 if ($objLoginController->logout()) {
-    header("Location: ../ShoppingCart/default.htm"); /* Redirect browser */
+    header("Location: login.php"); /* Redirect browser */
     exit();
 }
