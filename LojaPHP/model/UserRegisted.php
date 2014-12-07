@@ -38,7 +38,28 @@ class UserRegisted extends User{
         return $result;
     }
     
+    public function login($idUser, $password){
+        $strquery = "SELECT * FROM User WHERE UserID ='".$idUser."' AND Password='".$password."'";
+        $result = $this->dal->numRowsQuery($strquery);
+        if($result==1){
+            $result2 = $this->dal->query($strquery);
+            $recordObj = mysqli_fetch_assoc($result2);
+            $this->setUserID($idUser);
+            $this->populatedData($idUser);
+            return TRUE;
+        }
+        return FALSE;
+    }
     
+    private function populatedData($id){
+        $strquery = "SELECT * FROM User WHERE UserID ='".$id."'";
+        $result = $this->dal->query($strquery);
+        $recordObj = mysqli_fetch_assoc($result);
+        $this->setPassword($recordObj["Password"]);
+        $this->setName($recordObj["Name"]);
+        $this->setLastName($recordObj["LastName"]);
+        $this->setPermissions($recordObj["Permissions"]);
+    }
 
     
     

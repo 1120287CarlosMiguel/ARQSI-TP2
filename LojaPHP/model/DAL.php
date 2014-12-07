@@ -112,6 +112,13 @@ class DAL {
 	return mysqli_insert_id($this->link);
     }
     
+    function numRowsQuery($query) {
+        if ($result = mysqli_query($this->link, $query)) {
+            return mysqli_num_rows($result);
+        } else {
+            return 0;
+        }
+    }
 
     /*
     // Guarda numa BD o tipo de request e o tipo (1-URl do pedido,2-pequisas,3-Tag selecionada 4-limiteTags 5-mbid (indenficador do ID musica))

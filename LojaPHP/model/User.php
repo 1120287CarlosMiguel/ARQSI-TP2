@@ -15,8 +15,8 @@ class User {
     public function getUserID() {return $this->userID;}
     public function setUserID($ID) {$this->userID = $ID;}
     
-    private function getPassword() {return $this->password;}
-    private function setPassword($ID) {$this->password = $ID;}
+    protected function getPassword() {return $this->password;}
+    protected function setPassword($ID) {$this->password = $ID;}
     
     public function getName() {return $this->name;}
     public function setName($ID) {$this->name = $ID;}
@@ -27,14 +27,4 @@ class User {
     public function getPermissions() {return $this->permissions;}
     public function setPermissions($ID) {$this->permissions = $ID;}
     
-    protected function populatedData($id){
-        $strquery = "SELECT * FROM User WHERE UserID =".$id;
-        $result = $this->dal->query($strquery);
-        $recordObj = mysqli_fetch_assoc($result);
-        $this->setPassword($recordObj["Password"]);
-        $this->setName($recordObj["Name"]);
-        $this->setLastName($recordObj["LastName"]);
-        $this->setPermissions($recordObj["Permissions"]);
-    }
-
 }
