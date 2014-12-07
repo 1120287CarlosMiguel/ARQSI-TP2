@@ -69,6 +69,7 @@ namespace MvcMusicStore.Controllers
                         sysUser.Password = encrpPass;
                         sysUser.PasswordSalt = crypto.Salt;
                         sysUser.UserId = Guid.NewGuid();
+                        sysUser.Orders = new List<Order>();
 
                         db.Users.Add(sysUser);
                         db.SaveChanges();

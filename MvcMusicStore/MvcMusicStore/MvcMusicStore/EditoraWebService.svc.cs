@@ -18,22 +18,73 @@ namespace MvcMusicStore
         }
 
 
-        public string GetCatalogo()
+        public string GetCatalogo(string API_key)
         {
             string json;
 
             MusicStoreEntities db = new MusicStoreEntities();
 
-            List<Album> alb = db.Albums.ToList();
+            if (db.Users.FirstOrDefault(u => u.PasswordSalt == API_key) != null)
+            {
 
-            json = JsonConvert.SerializeObject(alb);
+                List<Album> alb = db.Albums.ToList();
 
-            return json;
+                json = JsonConvert.SerializeObject(alb);
+
+                return json;
+            }
+
+            return "API_key desconhecida";
         }
 
-        public void finishOrder()
+        public int CreateOrder(string API_key,float total)
         {
-            throw new NotImplementedException();
+            MusicStoreEntities db = new MusicStoreEntities();
+
+            var user = db.Users.FirstOrDefault(u => u.PasswordSalt == API_key);
+
+            if (user != null)
+            {
+                Order order = new Order
+                {
+                    TotalPrice = total,
+                    UserID = user.UserId,
+                    FirstName = "Sem Nome",
+                    LastName = "Sem Nome",
+                    OrderDate = DateTime.Now,
+                    OrderDetails =  new List<OrderDetail>(),
+                    
+                };
+
+                db.Orders.Add(order);
+                db.SaveChanges();
+
+                return order.OrderID;
+            }
+            return -1;
+        }
+
+        public void FinishOrder(int orderID, int qnt, float price, int albumID)
+        {
+            MusicStoreEntities db = new MusicStoreEntities();
+
+            var order = db.Orders.FirstOrDefault(o => o.OrderID == orderID);
+
+            if(order != null)
+            {
+
+                OrderDetail detail = new OrderDetail{
+                    Price = price,
+                    Quantity = qnt,
+                    OrderID = order.OrderID,
+                    AlbumID = db.Albums.FirstOrDefault(a => a.AlbumId == albumID).AlbumId
+                };
+
+                db.OrdersDetails.Add(detail);
+
+                db.SaveChanges();
+            }
+
         }
 
 
@@ -56,10 +107,5 @@ namespace MvcMusicStore
             return "Utilizador Desconhecido";
         }
 
-
-        public int CreateOrder()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

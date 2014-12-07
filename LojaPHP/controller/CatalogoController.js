@@ -9,6 +9,8 @@ angular.module('Catalogo', [])
                     
                     $scope.id = 0;
                     
+                    $scope.editoraID = 0;
+                    
                     $scope.getAlbuns = function () {
                                 
                                 var response = $http.get('../AJAX/IDEIEditoraAJAX.php?metodo=GetCatalogo');
@@ -65,12 +67,12 @@ angular.module('Catalogo', [])
                         $("#checkout").modal("hide");
                     }
                     
-                    $scope.checkout = function () {
+                    $scope.lojaCheckout = function () {
                         var produtos = "";
                         
                         for(i=0;i < $scope.carrinho.length; i++ ) {
                             
-                            var response = $http.post("../AJAX/IDEIEditoraOrderCheckout.php", {albumID : $scope.carrinho[i].AlbumId,
+                            var response = $http.post("../AJAX/CatalogoLojaOrderCheckout.php", {albumID : $scope.carrinho[i].AlbumId,
                                                                                 title : $scope.carrinho[i].Title,
                                                                                 price : $scope.carrinho[i].Price,
                                                                                 qnt : $scope.qntProdtuto[$scope.carrinho[i].Title],
@@ -80,7 +82,6 @@ angular.module('Catalogo', [])
                                                                                 orderID : $scope.id});
                                                                             
                             response.success(function(data, status, headers, config) {
-                                alert(data);
                                 })
                              
                             response.error(function(data, status, headers, config) {
@@ -91,14 +92,11 @@ angular.module('Catalogo', [])
                     }
                     
                     $scope.insertEditoraOrder = function () {
-                        
-                        var id = 0;
-                        
-                        var response = $http.get("../AJAX/IDEIEditoraOrderCheckout.php?metodo=newOrder");
+                        var response = $http.get("../AJAX/CatalogoLojaOrderCheckout.php?metodo=newOrder");
                                                                             
                             response.success(function(data, status, headers, config) {
                                     $scope.id = data;
-                                    $scope.checkout();
+                                    $scope.lojaCheckout();
                                     $scope.exitCheckout();
                                 })
                              
@@ -107,6 +105,43 @@ angular.module('Catalogo', [])
                             })
                         
                     }
+                    
+                    $scope.editoraOrderCheckOut = function () {
+                        
+                        total = $scope.getTotal();
+                        
+                        var response = $http.get("../AJAX/CatalogoEditoraOrderCheckout.php?metodo=NewOrder&Total="+total);
+                        
+                        response.success(function(data, status, headers, config) {
+                                    $scope.editoraID = data;
+                                    $scope.editoraCheckout();
+                                })
+                             
+                        response.error(function(data, status, headers, config) {
+                        })
+                    }
+                    
+                    $scope.editoraCheckout = function () {
+                        var produtos = "";
+                        
+                        for(i=0;i < $scope.carrinho.length; i++ ) {
+                            
+                            var response = $http.post("../AJAX/CatalogoEditoraOrderCheckout.php", {orderID : $scope.editoraID,
+                                                                                                   albumID : $scope.carrinho[i].AlbumId,
+                                                                                                   price : $scope.carrinho[i].Price * $scope.qntProdtuto[$scope.carrinho[i].Title],
+                                                                                                   qnt : $scope.qntProdtuto[$scope.carrinho[i].Title]});
+                                                                            
+                            response.success(function(data, status, headers, config) {
+                                })
+                             
+                            response.error(function(data, status, headers, config) {
+                                })
+                          
+                            
+                        }
+                    }
+                    
+                    
           
               }
   );

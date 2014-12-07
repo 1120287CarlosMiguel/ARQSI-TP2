@@ -18,12 +18,12 @@ namespace MvcMusicStore
         string GetAPI_Key(string username, string password);
 
         [OperationContract]
-        string GetCatalogo();
+        string GetCatalogo(string API_key);
 
         [OperationContract]
-        int CreateOrder();
+        int CreateOrder(string API_key, float total);
 
         [OperationContract]
-        void finishOrder();
+        void FinishOrder(int orderID, int qnt, float price, int albumID);
     }
 }

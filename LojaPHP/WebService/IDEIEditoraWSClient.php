@@ -8,14 +8,17 @@
 
 class IDEIEditoraWSClient {
 
-    private $WSDL = "http://localhost:44864/EditoraWebService.svc?wsdl";
-
 //Funcao para chamar via AJAX para retornar catalogo(JSON)
     function __getCatalogo() {
+        
+        $api = $this->__getAPI_Key("cfmm1994@gmail.com", "20cfmm94");
+        
         try {
             $client = new SoapClient("http://localhost:44864/EditoraWebService.svc?wsdl");
-
-            $result = $client->GetCatalogo();
+            
+            $params = array("API_key" => $api);
+            
+            $result = $client->GetCatalogo($params);
 
             echo "$result->GetCatalogoResult";
         } catch (Exception $ex) {
@@ -26,7 +29,6 @@ class IDEIEditoraWSClient {
     function __getAPI_Key($user, $password) {
         
         try{
-
             $client = new SoapClient("http://localhost:44864/EditoraWebService.svc?wsdl");
 
             $params = array("username" => $user,
@@ -34,9 +36,44 @@ class IDEIEditoraWSClient {
 
             $result = $client->GetAPI_Key($params);
 
-            echo "$result->GetAPI_KeyResult";
+            return $result->GetAPI_KeyResult;
+        } 
+        catch (Exception $ex)
+        {
+            return "";
+        }
+    }
+    
+    function __createOrder($total)
+    {
+        $api = $this->__getAPI_Key("cfmm1994@gmail.com", "20cfmm94");
+        
+         try{
+            $client = new SoapClient("http://localhost:44864/EditoraWebService.svc?wsdl");
+
+            $params = array("API_key" => $api,
+                            "total" => $total);
+
+            $result = $client->CreateOrder($params);
+            
+            echo "$result->CreateOrderResult";
+            
         }  catch (Exception $ex) {
             echo "Editora não acessivel";
+        }
+    }
+    
+    function __addOrderDetail($orderID, $qnt, $price, $albumID) {
+        try{
+            $client = new SoapClient("http://localhost:44864/EditoraWebService.svc?wsdl");
+
+            $params = array("orderID" => $orderID,
+                            "qnt" => $qnt,
+                            "price" => $price,
+                            "albumID" => $albumID);
+                    
+            $result = $client->FinishOrder($params);
+        }  catch (Exception $ex) {
         }
     }
 
