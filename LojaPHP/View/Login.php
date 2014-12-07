@@ -12,7 +12,7 @@ if(isset($_POST["submit"])){
     $objLoginController = new UserRegistedController();
     
     if($objLoginController->login($_POST["userID"],$_POST["password"])){
-        header("Location: ../ShoppingCart/default.htm"); /* Redirect browser */
+        header("Location: ../ShoppingCart/default.php"); /* Redirect browser */
         exit();
     }else{
         $msgErro="Dados do login incorrectos";
@@ -23,7 +23,7 @@ if(isset($_POST["submit"])){
 <!doctype html>
 <html>
     <head>
-        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../Library/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="Login.css" rel="stylesheet">
     </head>
     <body>
@@ -52,6 +52,7 @@ if(isset($_POST["submit"])){
                         </div>
                         <input type="submit" id="btn-login" name="submit" class="btn btn-custom btn-lg btn-block" value="Log in">
                     </form>
+                <a id="btn-login" class="btn btn-custom btn-lg btn-block" href="Register.php">Registar</a>
                     <hr>
         	    </div>
     		</div> <!-- /.col-xs-12 -->
@@ -64,7 +65,7 @@ if(isset($_POST["submit"])){
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <p>Powered by <strong>Loja CD's</strong></p>
+                <p>Powered by <strong>Sua Loja CD's</strong></p>
             </div>
         </div>
     </div>

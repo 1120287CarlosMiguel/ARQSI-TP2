@@ -15,11 +15,12 @@ function product(sku, name, description, price, cal, carot, vitc, folate, potass
         "Fiber": fiber
     };
 */
-function product(albumID, title, price, artist, genre, url) {
+function product(albumID, title, price, artist, genre, url, qtdStock) {
     this.albumID = albumID;
     this.title = title;
     this.price = price;
     this.artist = artist;
     this.genre = genre;
     this.url = url;
+    this.qtdStock = qtdStock;
 }
