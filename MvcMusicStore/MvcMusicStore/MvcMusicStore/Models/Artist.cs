@@ -1,4 +1,5 @@
 ﻿
+using Newtonsoft.Json;
 using System.Collections.Generic;
 namespace MvcMusicStore.Models
 {
@@ -8,6 +9,7 @@ namespace MvcMusicStore.Models
 
         public string Name { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Album> Albums { get; set; }
     }
 }

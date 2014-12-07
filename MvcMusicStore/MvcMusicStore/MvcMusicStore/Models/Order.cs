@@ -31,5 +31,7 @@ namespace MvcMusicStore.Models
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
+        
+
     }
 }

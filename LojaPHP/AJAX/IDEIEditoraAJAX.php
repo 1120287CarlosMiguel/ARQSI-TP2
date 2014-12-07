@@ -7,13 +7,21 @@ include '../WebService/IDEIEditoraWSClient.php';
  * and open the template in the editor.
  */
 
-if ($_GET['metodo']) {
+if (isset($_GET['metodo'])) {
     $metodo = $_GET['metodo'];
+    
+    $cliente = new IDEIEditoraWSClient();
 
-    if ($metodo == "GetCatalogo") {
-        $cliente = new IDEIEditoraWSClient();
+    if ($metodo == "GetCatalogo") 
+    {
         $result = $cliente->__getCatalogo();
 
+        echo "$result";
+    }
+    else if($metodo == "GetAPI_Key") 
+    {
+        $result = $cliente->__getAPI_key("cfmm1994@gmail.com","20cfmm94");
+        
         echo "$result";
     }
 }

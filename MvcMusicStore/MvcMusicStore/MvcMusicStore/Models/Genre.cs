@@ -16,6 +16,7 @@
 
 namespace MvcMusicStore.Models
 {
+    using Newtonsoft.Json;
     using System.Collections.Generic;
 
     public class Genre
@@ -24,8 +25,10 @@ namespace MvcMusicStore.Models
 
         public string Name { get; set; }
 
+        [JsonIgnore]
         public string Description { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Album> Albums { get; set; }
     }
 }

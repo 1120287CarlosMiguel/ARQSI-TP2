@@ -14,14 +14,17 @@
 // places, or events is intended or should be inferred.
 // ----------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 namespace MvcMusicStore.Models
 {
     public class Album
     {
         public int AlbumId { get; set; }
 
+        [JsonIgnore]
         public int GenreId { get; set; }
 
+        [JsonIgnore]
         public int ArtistId { get; set; }
 
         public string Title { get; set; }
