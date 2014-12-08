@@ -52,7 +52,7 @@ class Order {
     
     public function getAllOrderDetails(){
         $arrayObjOrderDetail = array();
-        $strquery = "SELECT OrderDetailID FROM OrderDetail WHERE OrderID =".$this->getOrderID();
+        $strquery = "SELECT OrderDetailID FROM orderdetail WHERE OrderID =".$this->getOrderID();
         $result = $this->dal->query($strquery);
         while ($row = $result->fetch_assoc()) {
             $objOrderDetail = new OrderDetails($row["OrderDetailID"]);
@@ -62,7 +62,7 @@ class Order {
     }
 
     private function populatedData($id){
-        $strquery = "SELECT * FROM Order WHERE OrderID =".$id;
+        $strquery = "SELECT * FROM order WHERE OrderID =".$id;
         $result = $this->dal->query($strquery);
         $recordObj = mysqli_fetch_assoc($result);
         $this->setOrderID($recordObj["OrderID"]);
@@ -73,14 +73,14 @@ class Order {
     public function creatOrder($utilizadorID){
         $fields="OrderID, PrecoTotal, UtilizadorID";
         $value="NULL, '0', '$utilizadorID'";
-        $this->dal->insert("Order",$fields,$value);
+        $this->dal->insert("order",$fields,$value);
         $id=$this->dal->insertID(); //get ultimo ID inserido
         $this->setOrderID($id);
         return TRUE;
     }
     
     public function updateOrderPrecoTotal($precoTotal){
-        if($this->dal->update("Order","PrecoTotal",$precoTotal,"OrderID", $this->getOrderID())){
+        if($this->dal->update("order","PrecoTotal",$precoTotal,"OrderID", $this->getOrderID())){
             $this->setPrecoTotal($precoTotal);
             return TRUE;
         }

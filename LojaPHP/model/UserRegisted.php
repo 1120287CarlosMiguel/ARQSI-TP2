@@ -33,13 +33,13 @@ class UserRegisted extends User{
     public function register($username, $password,$name,$LastName){
         $fields="UserID, Password, Name, LastName, Permissions";
         $value="'$username', '$password', '$name', '$LastName','2'";
-        $result = $this->dal->insert("User",$fields,$value);
+        $result = $this->dal->insert("user",$fields,$value);
         $this->setUserID($username); //get ultimo ID inserido
         return $result;
     }
     
     public function login($idUser, $password){
-        $strquery = "SELECT * FROM User WHERE UserID ='".$idUser."' AND Password='".$password."'";
+        $strquery = "SELECT * FROM user WHERE UserID ='".$idUser."' AND Password='".$password."'";
         $result = $this->dal->numRowsQuery($strquery);
         if($result==1){
             $result2 = $this->dal->query($strquery);
@@ -53,7 +53,7 @@ class UserRegisted extends User{
     }
     
     private function populatedData($id){
-        $strquery = "SELECT * FROM User WHERE UserID ='".$id."'";
+        $strquery = "SELECT * FROM user WHERE UserID ='".$id."'";
         $result = $this->dal->query($strquery);
         $recordObj = mysqli_fetch_assoc($result);
         $this->setPassword($recordObj["Password"]);

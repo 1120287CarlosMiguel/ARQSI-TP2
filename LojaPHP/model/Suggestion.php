@@ -17,7 +17,7 @@ class Suggestion {
     }
     
     public function getTopCD(){
-        $strquery = "select AlbumID, count(*) from OrderDetail group by AlbumID order by count(*) desc limit 3";
+        $strquery = "select AlbumID, count(*) from orderdetail group by AlbumID order by count(*) desc limit 3";
         $recordset = $this->dal->query($strquery);
         if($recordset){
             return $recordset;

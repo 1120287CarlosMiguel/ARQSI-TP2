@@ -65,7 +65,7 @@ class OrderDetails {
     public function saveNewDetail($orderID,$albumID, $qtd, $price){
         $fields="OrderID, AlbumID, Quantidade, Price";
         $value="'$orderID','$albumID', '$qtd', '$price'";
-        $this->dal->insert("OrderDetail",$fields,$value);
+        $this->dal->insert("orderdetail",$fields,$value);
         //get ultimo ID inserido
         $this->setOrderDetailID($this->dal->insertID());
         $albumObj = new Album($albumID);
@@ -78,7 +78,7 @@ class OrderDetails {
     }
 
     private function populatedData($id){
-        $strquery = "SELECT * FROM OrderDetail WHERE OrderDetailID =".$id;
+        $strquery = "SELECT * FROM orderdetail WHERE OrderDetailID =".$id;
         $result = $this->dal->query($strquery);
         $recordObj = mysqli_fetch_assoc($result);
         $this->setOrderID($recordObj["OrderID"]);

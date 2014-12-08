@@ -41,7 +41,7 @@ class Album {
     }
 
     public function setID($ID) {
-        $strquery = "SELECT * FROM Album WHERE AlbumID =" . $ID;
+        $strquery = "SELECT * FROM album WHERE AlbumID =" . $ID;
         $result = $this->dal->query($strquery);
         if ($result) {
             $this->albumID = $ID;
@@ -102,7 +102,7 @@ class Album {
     public function queryAlbuns() {
         $mysqli = $this->dal;
         if ($mysqli) {
-            $strquery = "SELECT * FROM Album";
+            $strquery = "SELECT * FROM album";
             $recordset = $mysqli->query($strquery);
             return $recordset;
         }
@@ -123,7 +123,7 @@ class Album {
     }
 
     private function populatedData($id) {
-        $strquery = "SELECT * FROM Album WHERE AlbumID =" . $id;
+        $strquery = "SELECT * FROM album WHERE AlbumID =" . $id;
         $result = $this->dal->query($strquery);
         if ($result) {
             $recordObj = mysqli_fetch_assoc($result);
@@ -139,7 +139,7 @@ class Album {
     public function removeAlbum($qtd) {
         $endQtd = $this->getQtd() - $qtd;
         if ($endQtd >= 0) {
-            if ($this->dal->update("Album", "Quantidade", $this->getQtd() - $qtd, "AlbumID", $this->getID())) {
+            if ($this->dal->update("album", "Quantidade", $this->getQtd() - $qtd, "AlbumID", $this->getID())) {
                 $this->setQtd($qtd);
                 return TRUE;
             }
@@ -150,7 +150,7 @@ class Album {
 
     public function addAlbum($qtd) {
         $endQtd = $this->getQtd() + $qtd;
-        if ($this->dal->update("Album", "Quantidade", $this->getQtd() - $qtd, "AlbumID", $this->getID())) {
+        if ($this->dal->update("album", "Quantidade", $this->getQtd() - $qtd, "AlbumID", $this->getID())) {
             $this->setQtd($qtd);
             return TRUE;
         }
