@@ -1,6 +1,11 @@
 ﻿@model MvcMusicStore.Models.Genre
 @{
     ViewBag.Title = "Browse Albums";
+    if (!Roles.IsUserInRole("Members"))
+    {
+        var returnUrl = "~/User/LogIn?ReturnUrl=" + Request.Url.LocalPath;
+        Response.Redirect(returnUrl);
+    }
 }
 <div class="genre">
     <h3>

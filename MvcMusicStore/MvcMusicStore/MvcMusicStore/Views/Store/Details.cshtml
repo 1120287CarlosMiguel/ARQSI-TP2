@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "Album - " + Model.Title;
+    if (!Roles.IsUserInRole("Members"))
+    {
+        var returnUrl = "~/User/LogIn?ReturnUrl=" + Request.Url.LocalPath;
+        Response.Redirect(returnUrl);
+    }
 }
 
 <h2>@Model.Title</h2>

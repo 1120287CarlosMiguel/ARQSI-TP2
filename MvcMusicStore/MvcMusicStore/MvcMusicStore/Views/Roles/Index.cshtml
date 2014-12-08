@@ -1,16 +1,14 @@
 ﻿@{
-    //if (!Roles.IsUserInRole("Administrator"))
-    //{
-    //    Response.Redirect("~/Home");
-    //}
+    if (!Roles.IsUserInRole("Administrator"))
+    {
+        Response.Redirect("~/Home");
+    }
 
     var roleName = "";
 
     string[] userNames = new string[1];
 
     string[] roleNames = new string[1];
-
-    var errorMensager = "";
 
 
 
@@ -119,7 +117,6 @@
             }
             catch (System.Data.SqlClient.SqlException e)
             {
-                errorMensager = "User canot be delete, user associated  with role";
             }
             
         }

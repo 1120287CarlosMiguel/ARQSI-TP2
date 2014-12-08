@@ -6,13 +6,3 @@
     <img src="~/Content/Images/home-showcase.png" />
 </div>
 <p>This is public informmation</p>
-
-@if (WebSecurity.IsAuthenticated)
-{
-    <p>This is protected information</p>
-}
-
-@if (Roles.IsUserInRole("Administrator"))
-{
-    <p>This is super protected information</p>
-}

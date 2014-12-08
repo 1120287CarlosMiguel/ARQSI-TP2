@@ -18,6 +18,19 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            @if (Roles.IsUserInRole("Manager"))
+                            {
+                                <li>@Html.ActionLink("Store Manager", "Index", "StoreManager")</li>
+                            }
+                            @if (Roles.IsUserInRole("Administrator"))
+                            {
+                                <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
+                                <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+                            }
+                            @if (Roles.IsUserInRole("Members"))
+                            {
+                                <li>@Html.ActionLink("Store", "Index", "Store")</li>
+                            }
                         </ul>
                     </nav>
                 </div>

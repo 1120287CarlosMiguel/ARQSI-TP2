@@ -1,0 +1,55 @@
+﻿@model MvcMusicStore.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    if (!Roles.IsUserInRole("Administrator"))
+    {
+        var returnUrl = "~/User/LogIn?ReturnUrl=" + Request.Url.LocalPath;
+        Response.Redirect(returnUrl);
+    }
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Order</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OrderDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TotalPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalPrice)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

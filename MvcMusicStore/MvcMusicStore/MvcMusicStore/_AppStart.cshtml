@@ -1,6 +1,10 @@
 ﻿@{
     WebSecurity.InitializeDatabaseConnection("MusicStoreEntities",
        "UserProfile", "UserId", "Email", true);
-    //Roles.AddUserToRole("AdminMusicStore", "Administrator");
+
+    //WebSecurity.CreateUserAndAccount("Admin", "Admin");
+    //Roles.CreateRole("Administrator");
+    //Roles.AddUserToRole("Admin", "Administrator");
+
     
        }

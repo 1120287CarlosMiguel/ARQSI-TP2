@@ -1,6 +1,11 @@
 ﻿@model IEnumerable<MvcMusicStore.Models.Genre>
 @{
     ViewBag.Title = "Store";
+    if (!Roles.IsUserInRole("Members"))
+    {
+        var returnUrl = "~/User/LogIn?ReturnUrl=" + Request.Url.LocalPath;
+        Response.Redirect(returnUrl);
+    }
 }
 <h3>Browse Genres</h3>
 
