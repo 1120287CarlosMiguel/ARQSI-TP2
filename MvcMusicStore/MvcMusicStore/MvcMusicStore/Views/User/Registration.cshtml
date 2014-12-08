@@ -37,7 +37,7 @@
             {
                 var crypto = new SimpleCrypto.PBKDF2();
 
-                WebSecurity.CreateUserAndAccount(username, password, null, false);//para enviar email
+                WebSecurity.CreateUserAndAccount("Loja", username, password, false);//para enviar email
                 WebSecurity.Login(username, password, true);
                 
                 errorMessage = String.Format("{0} created.", username);

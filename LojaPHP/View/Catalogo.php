@@ -1,12 +1,7 @@
-<?php
-session_start();
-if (isset($_SESSION["login"]) and ($_SESSION["login_Permissions"]=="1")) {
-    ?>
-<!doctype html>
 <html ng-app="Catalogo">
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-15"/>
-        <script src="../Library/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
         <script src="../controller/CatalogoController.js"></script>
         <link href="../Library/Bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </head>
@@ -76,7 +71,7 @@ if (isset($_SESSION["login"]) and ($_SESSION["login_Permissions"]=="1")) {
                 <div id="container" ng-if="albuns.length != 0">
                     <div id="sidebar1">
                         <div class="row" >
-                            <div class="col-sm-6 col-md-4" ng-repeat="alb in albuns| filter:tit track by $index">
+                            <div class="col-sm-6 col-md-4" data-ng-repeat="alb in albuns | filter:tit track by $index">
                                 <div class="thumbnail">
                                     <img ng-src="{{alb.AlbumArtUrl}}"/>
                                     <div class="caption">
@@ -150,10 +145,3 @@ if (isset($_SESSION["login"]) and ($_SESSION["login_Permissions"]=="1")) {
         <script src="../Library/Bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
-<?php
-} else {
-    echo "<div align='center'><h1>Acesso Negado</h1>";
-    echo "<div><img src='../img/magic-word.gif'></div>";
-    echo "<h3><a href='Login.php'>Fazer o Login</a></h3></div>";
-}
-?>

@@ -9,10 +9,10 @@
 //Data Access Layer
 class DAL {
 
-    private $DB_NAME = 'LojaPHP'; //arqsi i100916
+    private $DB_NAME = 'lojaphp'; //arqsi i100916
     private $DB_HOST = 'localhost'; // phpdev2.dei.isep.ipp.pt localhost
     private $DB_USER = 'root'; //i100916 root
-    private $DB_PASS = ''; // 8410845
+    private $DB_PASS = 'q1w2e3r4t5y6'; // 8410845
 
     var $link = "";
     

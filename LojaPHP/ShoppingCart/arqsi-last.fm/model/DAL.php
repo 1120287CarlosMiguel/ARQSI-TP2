@@ -25,7 +25,7 @@ class DAL {
     // a BD tem função NOW() para guardar a horar 
     function logInsert($request, $type){
         $mysqli = $this->db_connect();
-        $sqlquery = "INSERT INTO `i120287`.`Last.fmLog` (eventTime,request,type)
+        $sqlquery = "INSERT INTO `LojaPHP`.`Last.fmLog` (eventTime,request,type)
                          VALUES (NOW(),'$request','$type')";
         $result = $mysqli->query($sqlquery);
         return $result;
