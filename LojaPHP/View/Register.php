@@ -33,7 +33,7 @@ if($flagShowRegiste){
     <head>
 
 
-        <link href="http:////maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../Library/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
     </head>
     <body>

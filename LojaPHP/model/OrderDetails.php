@@ -8,6 +8,8 @@
 
 include_once 'DAL.php';
 include_once 'Album.php';
+include_once 'ImportMusicWSClient.php';
+
 
 class OrderDetails {
 
@@ -70,7 +72,11 @@ class OrderDetails {
         $this->setOrderDetailID($this->dal->insertID());
         $albumObj = new Album($albumID);
         $albumObj->removeAlbum($qtd);
-        return TRUE;
+        
+        //webservice
+        $webService = new ImportMusicWSClient();
+        $webService->notifySale($albumObj->getTitle(), $qtd);
+       return TRUE;
     }
 
     private function populatedData($id){

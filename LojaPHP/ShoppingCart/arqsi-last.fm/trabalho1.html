@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Trabalho1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script type="text/javascript">
+
+            var xmlHttpObj =null;
+            var isPostBack = false;
+
+            function CreateXmlHttpRequestObject( )
+            {
+
+                if (window.XMLHttpRequest)
+                {
+                    xmlHttpObj = new XMLHttpRequest()
+
+                }
+                else if (window.ActiveXObject)
+                {
+                    xmlHttpObj = new ActiveXObject("Microsoft.XMLHTTP")
+                }
+                return xmlHttpObj;
+            }
+
+            function MakeXMLHTTPCallforTag()
+            {
+                xmlHttpObj = CreateXmlHttpRequestObject();
+                var textArtist = document.getElementById("mySearch");
+                artist = textArtist.value;
+                // efectuar pedido Ajax ( open, registar eventHandler, send , etc)
+                if (xmlHttpObj)
+                {
+                    xmlHttpObj.open("GET", "./script/getArtist.php?artist=" + artist, true);
+                    xmlHttpObj.onreadystatechange = stateHandlerForTag;
+                    xmlHttpObj.send();
+                }
+            }
+
+            function stateHandlerForTag()
+            {
+                var docPHP;
+                if (xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200)
+                {
+                    // recebe resposta 
+                    docPHP = xmlHttpObj.responseText;
+
+                    if (docPHP) {
+                        var vecTags = docPHP.split(",");
+                        prencheTags(vecTags);
+                    } else {
+                        alert("Cantor nao encontrado");
+                    }
+                }
+            }
+
+            function prencheTags(vecTags) {
+
+                var selectTag = document.getElementById("selectTag");
+                selectTag.innerHTML = " ";
+
+                var options = "";
+                for (i = 0; i < vecTags.length; i++) {
+                    if (i === 1) {
+                        options += "<option value=\"" + vecTags[i] + "\"selected>" + vecTags[i] + "</option>"
+                    }
+                    options += "<option value=\"" + vecTags[i] + "\">" + vecTags[i] + "</option>"
+                }
+                selectTag.innerHTML = options;
+            }
+
+            function MakeXMLHTTPCallforTrack() {
+                xmlHttpObj = CreateXmlHttpRequestObject();
+                var selectTags = document.getElementById("selectTag");
+                var tag = selectTags.options[selectTags.selectedIndex].value;
+
+                var selectNumberTags = document.getElementById("numberTracks");
+                var numberTracks = selectNumberTags.value;
+
+                if (xmlHttpObj) {
+                    xmlHttpObj.open("GET", "./script/getTopTrack.php?tag="+tag+"&numberTracks="+numberTracks, true);
+                    xmlHttpObj.onreadystatechange = stateHandlerForTrack;
+                    xmlHttpObj.send();
+                }
+            }
+
+            function stateHandlerForTrack()
+            {
+                if (xmlHttpObj.readyState == 4 && xmlHttpObj.status == 200)
+                {
+                    docTrack = xmlHttpObj.responseText;
+                    
+                    var vecTrack = docTrack.split("<br>");
+                    prencheTopTracks(vecTrack);
+                }
+            }
+            
+            function prencheTopTracks(vecTrack) {
+                var liSong = document.getElementById("listTopTrack");
+                
+                var songListHTML = "";
+                for(i=0;i<vecTrack.length;i++) {
+                    if(vecTrack[i]) {
+                        var split = vecTrack[i].split(";");
+                        songListHTML += "<li>\n\
+                                            <a href=\"#"+i+"\">"+split[0]+"</a>\n\
+                                            <div id=\""+i+"\" class=\"accordion\">\
+                                                <dl>\n\
+                                                    <dt><img src=\""+split[1]+"\" class=\"imagemLista\"><span>"+split[2]+"</span></dt>\n\
+                                                    <dt><img src=\""+split[4]+"\" class=\"imagemLista\"><span>"+split[3]+"</span></dt>\n\
+                                                    <dt><b>Top Albuns:</b></dt>\n\
+                                                    <dt><ol type=\"1\">\n\
+                                                        <li>"+split[5]+"</li>\n\
+                                                        <li>"+split[6]+"</li>\n\
+                                                        <li>"+split[7]+"</li>\n\
+                                                    </ol></dt>\n\
+                                                <dt><b>TopTrack:</b>"+ split[8]+"</dt>\n\
+                                            </dl> \n\
+                                            </div></li>";
+                    }
+                }
+                liSong.innerHTML = songListHTML;
+            }
+
+        </script>
+
+                <style>
+            .div {
+                background-color: rgb(230,0,0);
+                width: 300px;
+                height: 500px;
+                padding: 15px;
+                margin: 25px;
+            }
+            .divSemCor {
+                width:auto;
+                height:30%;
+                overflow:scroll;
+                position: relative;
+                overflow-x: hidden;
+                overflow-y: auto;
+                top:-80px;
+            }
+
+            #numberTracks {
+                 width: 50px;                 
+            }
+
+            .AcordiaoLargura{
+                width: 250px;
+            }
+            
+
+            input{
+                border-radius: 5px;
+            }
+
+            select {
+                padding:3px;
+                margin: 0;
+                -webkit-border-radius:4px;
+                -moz-border-radius:4px;
+                border-radius:4px;
+                -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+                -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+                box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+                background: #f8f8f8;
+                color:#888;
+                border:none;
+                outline:none;
+                display: inline-block;
+                -webkit-appearance:none;
+                -moz-appearance:none;
+                appearance:none;
+                cursor:pointer;
+            }
+
+
+            /* Acordiao*/
+
+            /*  Basic stucture
+            =====================*/
+            #accordion{margin:100px auto;width:280px;}
+            #accordion ul{list-style:none;margin:0;padding:0;}
+            .accordion{display:none;}
+            .accordion:target{display:block;}
+            #accordion ul li a{text-decoration:none;display:block;padding:10px;}
+            .accordion{padding:2px;}
+
+
+
+
+
+            /*  Colors 
+            ====================*/
+            #accordion ul{
+                /*box-shadow*/
+                -webkit-box-shadow:0 4px 5px #BDBDBD;
+                -moz-box-shadow:0 4px 5px #BDBDBD;
+                box-shadow:0 4px 5px #BDBDBD;
+                /*border-radius*/
+                -webkit-border-radius:5px;
+                -moz-border-radius:5px;
+                border-radius:5px;
+            }
+            #accordion ul li a{
+                background: #fff;
+                border-bottom: 1px solid #E0E0E0;
+                color: #999;
+                width: 250px;
+            }
+            .accordion{
+                width:auto;
+                background:#fdfdfd;
+                color:#999;
+            }
+            .accordion:target{
+                border-top:4px solid #999999;
+				border-bottom: 4px solid #999999;
+            }
+			
+			.paragrafoEstrutura{
+
+                padding: 10px 5px; 
+                background: #dddddd;
+                width: 300px;
+                border-radius: 25px;
+            }
+			
+			.paragrafoLista{
+				border-style: solid;
+   				border-width: 1px;
+				top:-80px;
+			}
+			
+			.imagemLista{
+				width:21px;
+				height:21px;
+			}
+
+        </style>
+    </head>
+    <body><div class="div">
+            <p align="center" class="paragrafoEstrutura"><img src="lastfm_logo@2x.png" alt=""/></p>
+
+            <p align="center" class="paragrafoEstrutura">
+                <input type="search" id="mySearch" placeholder="Artist">
+                <input type="submit" onclick="MakeXMLHTTPCallforTag()" value="Submit">
+            </p>
+            <p align="center" class="paragrafoEstrutura">
+                <select name="selectTag" id="selectTag" style="width:100px">
+                </select>
+                <input name="top" id="numberTracks" max="999" type="number" min="0" step="1" value="5">
+                <input type="submit" value="Submit" onclick="MakeXMLHTTPCallforTrack()">
+
+            <div id="accordion"  class="divSemCor">
+                <ul id="listTopTrack">                  
+                </ul>
+            </div>
+            <p class="paragrafoEstrutura" style="position:relative;top:-140px;">
+               <a href="formularioGeo.php">Pesquisar eventos</a>
+            </p>
+
+        </div>
+    </body>
+</html>

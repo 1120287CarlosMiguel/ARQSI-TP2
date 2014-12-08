@@ -58,7 +58,11 @@ class PaymentController {
 
 
     //VAlidar se existe CD's suficentes para satisfazer a compra
+    //Mas antes disso valida se existe um cliente activo
     private function validateEnoughCDs(){
+        if(!isset($_SESSION["login"])){
+            return FALSE;
+        }
         if(isset($_POST)){
             for ($i=1; $i<=$_POST["totalItems"]; $i++)
             {
@@ -77,7 +81,7 @@ class PaymentController {
     
     private function makeOrder(){
         $objOrder = new Order();
-        $objOrder->creatOrder(1); //$utilizadorID ALERTA por aqui Sessisao user
+        $objOrder->creatOrder($_SESSION["login_UserID"]); //$utilizadorID ALERTA por aqui Sessisao user
         $totalPrice = 0;
         for ($i = 1; $i <= $_POST["totalItems"]; $i++) {
             $itemNumber = $_POST['item_number_' . $i];
