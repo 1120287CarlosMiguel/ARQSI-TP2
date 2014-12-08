@@ -178,9 +178,24 @@
     <Compile Include="ViewModels\StoreIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\accent.png" />
+    <Content Include="Content\Images\bullet.png" />
+    <Content Include="Content\Images\heroAccent.png" />
     <Content Include="Content\Images\home-showcase.png" />
+    <Content Include="Content\Images\home-showcaseSm.png" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\orderedList0.png" />
+    <Content Include="Content\Images\orderedList1.png" />
+    <Content Include="Content\Images\orderedList2.png" />
+    <Content Include="Content\Images\orderedList3.png" />
+    <Content Include="Content\Images\orderedList4.png" />
+    <Content Include="Content\Images\orderedList5.png" />
+    <Content Include="Content\Images\orderedList6.png" />
+    <Content Include="Content\Images\orderedList7.png" />
+    <Content Include="Content\Images\orderedList8.png" />
+    <Content Include="Content\Images\orderedList9.png" />
     <Content Include="Content\Images\placeholder.gif" />
+    <Content Include="Content\Images\placeholder.png" />
     <Content Include="Content\Images\starred.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

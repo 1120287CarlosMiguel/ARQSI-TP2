@@ -760,7 +760,7 @@ tr.pager td {
 **************************/
 
 p.site-title {
-    background: url(/Content/Images/logo.svg) no-repeat;
+    background: url(../Content/Images/logo.png) no-repeat;
     vertical-align: bottom;
     font-size: 20px;
     width: 100%;
