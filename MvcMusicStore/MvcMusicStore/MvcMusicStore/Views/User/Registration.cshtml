@@ -2,28 +2,111 @@
 @{
     ViewBag.Title = "Registration";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var username = "";
+    var password = "";
+    var confirmPassword = "";
+    var errorMessage = "";
+
+    if (!IsPost)
+    {
+        if (WebSecurity.IsAuthenticated)
+        {
+            errorMessage = String.Format("You are already logged in. (User name: {0})", WebSecurity.CurrentUserName);
+        }
+
+    }
+    else
+    {
+        WebSecurity.Logout();
+        username = Request["username"];
+        password = Request["password"];
+        confirmPassword = Request["confirmPassword"];
+
+        if (password != confirmPassword)
+        {
+            errorMessage = "Passwords don't match.";
+        }
+        else
+        {
+            if (WebSecurity.UserExists(username))
+            {
+                errorMessage = String.Format("User '{0}' already exists.", username);
+            }
+            else
+            {
+                var crypto = new SimpleCrypto.PBKDF2();
+
+                WebSecurity.CreateUserAndAccount(username, password, null, false);//para enviar email
+                WebSecurity.Login(username, password, true);
+                
+                errorMessage = String.Format("{0} created.", username);
+            }
+
+        }
+
+    }
 }
 
 
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary(true,"Create user failed, check your fiels.")
+    <h1>Register</h1>
 
-    <fieldset>
-        <legend>Create new user</legend>
-            <div>
-                @Html.LabelFor(m => m.Email)
-            </div>
-            <div>                
-                @Html.TextBoxFor(m => m.Email)
-                @Html.ValidationMessageFor(u=>u.Email)
-            </div>
-            <div>
-                @Html.LabelFor(m => m.Password)
-            </div>
-            <div>                
-                @Html.PasswordFor(m => m.Password)
-            </div>
-        <input type="submit" value="Create User" />
-    </fieldset>
-}
+    <form method="post">
+
+        <p>
+
+            @if (errorMessage != "")
+            {
+
+                <span class="errorMessage">@Html.Raw(errorMessage)</span>
+
+            }
+
+        </p>
+
+
+
+        <p>
+
+            <label for="username">Username (email):</label><br />
+
+            <input type="text" name="username" id="username" value='@Request["username"]' />
+
+        </p>
+
+        <p>
+
+            <label for="password">Password:</label><br />
+
+            <input type="password" name="password" id="password" value="" />
+
+        </p>
+
+        <p>
+
+            <label for="confirmPassword">Confirm password:</label><br />
+
+            <input type="password" name="confirmPassword" id="confirmPassword" value="" />
+
+        </p>
+
+
+
+        <p>
+
+            <input type="submit" value="Submit" />
+
+        </p>
+
+        <p>
+
+            @Html.ActionLink("Log Out", "LogOut", "User")
+
+            <br />
+
+            <a href="@Href("~/Home")">Home</a>
+
+        </p>
+
+    </form>
+

@@ -8,6 +8,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using MvcMusicStore.Models;
 using System.Data.Entity;
+using WebMatrix.WebData;
+using WebMatrix.Data;
+using System.Web.Security;
 
 
 namespace MvcMusicStore
@@ -25,9 +28,12 @@ namespace MvcMusicStore
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer(new SampleData());
+            System.Data.Entity.Database.SetInitializer(new SampleData());
 
 
+            
+
+            
         }
     }
 }

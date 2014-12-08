@@ -1,6 +1,15 @@
 ﻿@{
     ViewBag.Title = "LogOut";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    WebSecurity.Logout();
 }
 
-<h2>LogOut</h2>
+
+
+    <h1>Logout</h1>
+
+    <p>You are now logged out!</p>
+
+    <p><a href="@Href("~/Home")">Return to home page</a></p>
+
+

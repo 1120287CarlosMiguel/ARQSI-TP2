@@ -1,0 +1,10 @@
+﻿@{
+    Response.CacheControl = "no-cache";
+    if (!WebSecurity.IsAuthenticated)
+    {
+        var returnUrl = "~/User/LogIn?ReturnUrl=" + Request.Url.LocalPath;
+        Response.Redirect(returnUrl);
+    }
+    
+        
+}

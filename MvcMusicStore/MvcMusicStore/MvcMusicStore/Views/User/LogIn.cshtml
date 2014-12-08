@@ -3,27 +3,92 @@
 @{
     ViewBag.Title = "LogIn";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var username = "";
+
+    var password = "";
+
+    var errorMessage = "";
+
+
+
+    if (IsPost)
+    {
+
+        username = Request["username"];
+
+        password = Request["password"];
+
+        if (WebSecurity.Login(username, password, true))
+        {
+            Response.Redirect("~/Home");
+
+        }
+
+        else
+        {
+
+            errorMessage = "Login was not successful.";
+
+        }
+
+    }
 }
 
-@using (Html.BeginForm())
-{ 
-@Html.ValidationSummary(true, "Login failed. Check your login details")
-{
-    <div>
-        <fieldset>
-            <legend>Login Form</legend>
-            <div>@Html.LabelFor(u=>u.Email)</div>
-            <div>@Html.TextBoxFor(u => u.Email)
-                @Html.ValidationMessageFor(u=>u.Email)
-            </div>
+<h1>Login</h1>
 
-            <div>@Html.LabelFor(u => u.Password)</div>
-            <div>
-                @Html.PasswordFor(u => u.Password)
-            @Html.ValidationMessageFor(u => u.Password)
-            </div>
-            <input type="submit" value="Log In"/>
-        </fieldset>
-    </div>    
-}
-}
+<form method="post">
+
+    @if (WebSecurity.IsAuthenticated)
+    {
+
+        <p>
+            You are currently logged in as @WebSecurity.CurrentUserName.
+
+            @Html.ActionLink("Log Out", "LogOut", "User")
+
+        </p>
+
+    }
+
+    <p>
+
+        <label for="username">Username:</label><br />
+
+        <input type="text" name="username" id="username" value="" />
+
+    </p>
+
+    <p>
+
+        <label for="password">Password:</label><br />
+
+        <input type="password" name="password" id="password" value="" />
+
+    </p>
+
+    <p>
+
+        <input type="submit" value="Submit" />
+
+    </p>
+
+
+
+    <p>No user name? @Html.ActionLink("Register", "Registration", "User")</p>
+
+    <p><a href="@Href("~/Home")">Return to home page</a></p>
+
+
+
+</form>
+
+<p>
+
+    @if (errorMessage != "")
+    {
+
+        <span class="errorMessage">@errorMessage</span>
+
+    }
+
+</p>

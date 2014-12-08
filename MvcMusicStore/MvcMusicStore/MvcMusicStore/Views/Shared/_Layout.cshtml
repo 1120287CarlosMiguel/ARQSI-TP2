@@ -23,9 +23,9 @@
                 </div>
             </div>
             <div style="width: auto;">
-                @if (Request.IsAuthenticated)
+                @if (WebSecurity.IsAuthenticated)
                 {
-                    <strong>@Html.Encode(User.Identity.Name)</strong>
+                    <strong>@WebSecurity.CurrentUserName</strong>
                     @Html.ActionLink("Log Out", "Logout", "User")
                 }
                 else { @Html.ActionLink("Register", "Registration", "User")

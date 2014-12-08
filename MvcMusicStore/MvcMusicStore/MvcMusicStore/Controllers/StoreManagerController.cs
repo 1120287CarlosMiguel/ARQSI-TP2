@@ -6,16 +6,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcMusicStore.Models;
+using WebMatrix.Data;
+using WebMatrix.WebData;
 
 namespace MvcMusicStore.Controllers
 {
+    
     public class StoreManagerController : Controller
     {
         private MusicStoreEntities db = new MusicStoreEntities();
 
         //
         // GET: /StoreManager/
-
+        
         public ActionResult Index()
         {
             var albums = db.Albums.Include(a => a.Genre).Include(a => a.Artist);
