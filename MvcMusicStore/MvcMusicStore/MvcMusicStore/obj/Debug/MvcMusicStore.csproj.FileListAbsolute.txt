@@ -101,3 +101,16 @@ C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\WebM
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\WebMatrix.WebData.dll
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\WebMatrix.Data.xml
 C:\Users\Simão\Desktop\ARQSI\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\WebMatrix.WebData.xml
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\WebMatrix.Data.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\WebMatrix.WebData.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\WebMatrix.Data.xml
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\WebMatrix.WebData.xml
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Net.Http.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Net.Http.Formatting.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Net.Http.WebRequest.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Web.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Net.Http.Formatting.xml
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Web.Http.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Web.Http.WebHost.dll
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Web.Http.xml
+C:\Users\Carlos\Desktop\ISEP\ARQSI\TP2\MvcMusicStore\MvcMusicStore\MvcMusicStore\bin\System.Web.Http.WebHost.xml

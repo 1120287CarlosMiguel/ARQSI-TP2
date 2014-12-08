@@ -14,7 +14,7 @@ class IDEIEditoraWSClient {
         $api = $this->__getAPI_Key("cfmm1994@gmail.com", "20cfmm94");
         
         try {
-            $client = new SoapClient("http://localhost:44864/EditoraWebService.svc?wsdl");
+            $client = new SoapClient("http://wvm075.dei.isep.ipp.pt/IDEIEditora/EditoraWebService.svc?wsdl");
             
             $params = array("API_key" => $api);
             
@@ -29,7 +29,7 @@ class IDEIEditoraWSClient {
     function __getAPI_Key($user, $password) {
         
         try{
-            $client = new SoapClient("http://localhost:44864/EditoraWebService.svc?wsdl");
+            $client = new SoapClient("http://wvm075.dei.isep.ipp.pt/IDEIEditora/EditoraWebService.svc?wsdl");
 
             $params = array("username" => $user,
                             "password" => $password);
@@ -49,7 +49,7 @@ class IDEIEditoraWSClient {
         $api = $this->__getAPI_Key("cfmm1994@gmail.com", "20cfmm94");
         
          try{
-            $client = new SoapClient("http://localhost:44864/EditoraWebService.svc?wsdl");
+            $client = new SoapClient("http://wvm075.dei.isep.ipp.pt/IDEIEditora/EditoraWebService.svc?wsdl");
 
             $params = array("API_key" => $api,
                             "total" => $total);
@@ -65,7 +65,7 @@ class IDEIEditoraWSClient {
     
     function __addOrderDetail($orderID, $qnt, $price, $albumID) {
         try{
-            $client = new SoapClient("http://localhost:44864/EditoraWebService.svc?wsdl");
+            $client = new SoapClient("http://wvm075.dei.isep.ipp.pt/IDEIEditora/EditoraWebService.svc?wsdl");
 
             $params = array("orderID" => $orderID,
                             "qnt" => $qnt,

@@ -9,7 +9,7 @@
 class DAL {
 
     private $DB_NAME = 'i120287'; //arqsi i100916
-    private $DB_HOST = 'localhost'; // phpdev2.dei.isep.ipp.pt localhost
+    private $DB_HOST = 'phpdev2.dei.isep.ipp.pt'; // phpdev2.dei.isep.ipp.pt localhost
     private $DB_USER = 'i120287'; //i100916 root
     private $DB_PASS = '6883037'; // 8410845
 
