@@ -23,7 +23,7 @@ class DAL {
     public function db_connect() {
         $mysqli = new mysqli($this->DB_HOST, $this->DB_USER, $this->DB_PASS, $this->DB_NAME);
         if (mysqli_connect_errno()){
-            //log
+            $this->logQuery(mysqli_connect_errno());
             return NULL; 
         }
         $this->link=$mysqli;
@@ -37,9 +37,9 @@ class DAL {
   	if ($result)
   	{			
             return $result;
-	} else {
-            return 0;
-  	}
+	}
+        $this->logQuery(mysqli_error($this->link));
+        return 0;
     }
     
     function  __editora_Order_Insert() {
@@ -70,8 +70,10 @@ class DAL {
         $mysqli ->query($query);
         
         $query = "INSERT INTO `editoraorderdetail`(`EditoraOrderID`, `AlbumID`) VALUES ($orderID,$id)";
-        $mysqli->query($query);
-        
+        $result=$mysqli->query($query);
+        if(!result){
+           $this->logQuery(mysqli_error($this->link));
+        }
         $mysqli ->close();
     }
     
@@ -85,7 +87,7 @@ class DAL {
             //echo "<br/>sucesso $query <br>\n";
             return TRUE;
 	} else {
-            echo "<br/>log erro $query <br>\n";
+            $this->logQuery(mysqli_error($this->link));
             return FALSE;
   	}
     }
@@ -100,7 +102,7 @@ class DAL {
   	{			
             return TRUE;
 	} else {
-            echo "<br/>log erro $query <br>\n";
+            $this->logQuery(mysqli_error($this->link));
             return FALSE;
   	}
     }
@@ -115,45 +117,25 @@ class DAL {
     function numRowsQuery($query) {
         if ($result = mysqli_query($this->link, $query)) {
             return mysqli_num_rows($result);
-        } else {
-            return 0;
         }
+        $this->logQuery(mysqli_error($this->link));
+        return 0;
     }
 
-    /*
-    // Guarda numa BD o tipo de request e o tipo (1-URl do pedido,2-pequisas,3-Tag selecionada 4-limiteTags 5-mbid (indenficador do ID musica))
-    // a BD tem função NOW() para guardar a horar 
-    function logInsert($request, $type){
-        $mysqli = $this->db_connect();
-        $sqlquery = "INSERT INTO `i120287`.`Last.fmLog` (eventTime,request,type)
-                         VALUES (NOW(),'$request','$type')";
-        $result = $mysqli->query($sqlquery);
-        return $result;
-    }
-    
-    function logReaderAll(){
-        $mysqli = $this->db_connect(); 
-        if ($mysqli) {
-            $strquery = "SELECT * FROM `Last.fmLog`"; 
-            $recordset = $mysqli->query($strquery); 
-            return $recordset;
+    // generate log file
+    function logQuery($query) {
+        $filename = "../log.txt";
+        //chmod ($filename, 777);
+        if (!file_exists($filename)) {
+            $handle = fopen($filename, 'w') or die('ERRO creating the Log file: ' . $filename);
+            fclose($handle);
         }
-        return null;
+        $intro = date("Y-m-d H:i:s") . ";";
+        $logquery = fopen("$filename", "ab+");
+        fputs($logquery, "\r\n$intro $query");
+        fclose($logquery);
     }
-    
-    
-    function logReaderType($type){
-        $mysqli = $this->db_connect(); 
-        if ($mysqli) {
-            $strquery = "SELECT * FROM `Last.fmLog` WHERE type='$type'"; 
-            $recordset = $mysqli->query($strquery); 
-            return $recordset;
-        }
-        return null;
-    }
-     * 
-     * 
-     */
+
 }
 
 ?>

@@ -40,9 +40,7 @@ class OrderDetails {
     
     //Usado para quando se quer criar uma nova OrderDetail
     function __construct4($orderID,$albumID, $qtd, $price){
-        if(saveNewDetail($orderID,$albumID, $qtd, $price)){
-            
-        }
+        saveNewDetail($orderID,$albumID, $qtd, $price);
     }
     
     

@@ -38,6 +38,7 @@ class Order {
     
     public function getOrderID() {
         if(!isset($this->orderID)){
+            $this->dal->logQuery("nao existe ID selecionado na ordem");
             return NULL;
         }
         return $this->orderID;}
@@ -83,6 +84,7 @@ class Order {
             $this->setPrecoTotal($precoTotal);
             return TRUE;
         }
+        $this->dal->logQuery("erro fazer update do preco na order");
         return FALSE;
     }
 
@@ -93,6 +95,7 @@ class Order {
                 return TRUE;
             }
         }
+        $this->dal->logQuery("Erro adicionar uma ordem com detail");
         return FALSE;
     }
     

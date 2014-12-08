@@ -22,6 +22,7 @@ class Suggestion {
         if($recordset){
             return $recordset;
         }
+        $this->dal->logQuery("erro obter o top CDs");
         return NULL;
     }
     

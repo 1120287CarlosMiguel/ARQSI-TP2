@@ -48,6 +48,7 @@ class UserRegisted extends User{
             $this->populatedData($idUser);
             return TRUE;
         }
+        $this->dal->logQuery("Login ou pass incorretos");
         return FALSE;
     }
     
