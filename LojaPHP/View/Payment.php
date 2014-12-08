@@ -31,7 +31,6 @@ if (isset($_POST)) {
         }
         
         echo "<br><div><img src='../img/Animated_SuccessKid.gif'></div>";
-        echo "<div>(YEAH!!! Mais um passo para o 20!!!)</div>";
         echo "<h3><a href='../ShoppingCart/default.php'>Voltar a Loja</a></h3></div>";
     } else {
         echo "Erro na compra ".$paymentController->getError();

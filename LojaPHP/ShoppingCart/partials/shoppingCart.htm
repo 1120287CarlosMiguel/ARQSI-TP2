@@ -91,5 +91,26 @@
 
             <br /><br />
         </div>
+        <div ng-app="lastfm-app" style="width: 400px;overflow: auto">
+            <div class="container" ng-controller="RecentTracksController">
+                <h3>Sugestao de CD's do LastFM</h3> 
+                <ul class="thumbnails">
+                    <li class="span4" ng-repeat="song in songs">
+                        <a class="thumbnail" href="{{song.url}}" title="{{song.artist['#text']}} - {{song.name}}" style="display: block;">
+                            <div class="media">
+                                <div class="pull-left" href="#">
+                                    <img class="media-object" src="{{song.image[2]['#text']}}">
+                                </div>
+                                <div class="media-body">
+                                    <strong>{{song.artist['#text']}}</strong><br />
+                                    {{song.name}}<br />
+                                    <em>{{song.date['#text']}}</em>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

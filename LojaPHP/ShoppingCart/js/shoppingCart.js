@@ -266,3 +266,23 @@ function cartItem(albumID, title, price, quantity, qtdStock) {
     this.qtdStock = qtdStock;
 }
 
+
+function RecentTracksController($scope, $http) {
+        var url = 'http://ws.audioscrobbler.com/2.0/';
+        var params = {
+            method: 'tag.gettopalbums',
+            api_key: '1337a0720d826238352626d6366c9e34',
+            tag: 'pop',
+            limit: 3,
+            format: 'json'
+        };
+        $http.get(url, { params: params })
+            .success(function (data) {
+                $scope.songs = data.topalbums.album;
+            })
+            .error(function (data, status) {
+                console.log(data || "Request failed");
+                console.log(status);
+            });       
+    }
+

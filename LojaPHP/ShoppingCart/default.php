@@ -20,6 +20,7 @@ if (isset($_SESSION["login"])) {
             <script src="js/shoppingCart.js" type="text/javascript"></script>
             <script src="js/app.js" type="text/javascript"></script>
             <script src="js/controller.js" type="text/javascript"></script>
+            <script src="partials/lastfm.js" type="text/javascript"></script>
             <link href="css/style.css" rel="stylesheet" type="text/css"/>
         </head>
 

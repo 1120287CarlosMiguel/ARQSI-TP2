@@ -134,7 +134,6 @@ class Album {
             $this->setUrl($recordObj["ImageURL"]);
             $this->setQtd($recordObj["Quantidade"]);
         }
-        $this->dal->logQuery("erro popular album");
     }
 
     public function removeAlbum($qtd) {
