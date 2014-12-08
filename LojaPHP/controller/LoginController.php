@@ -24,6 +24,7 @@ class UserRegistedController{
             $_SESSION["login_UserID"]=$this->objUser->getUserID();
             $_SESSION["login_Name"]=$this->objUser->getName();
             $_SESSION["login_LastName"]=$this->objUser->getLastName();
+            $_SESSION["login_Permissions"]=$this->objUser->getPermissions();
             return TRUE;
         }
         return FALSE;

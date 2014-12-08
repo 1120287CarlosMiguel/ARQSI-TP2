@@ -39,7 +39,10 @@ if (isset($_SESSION["login"])) {
                             </h1>
                             <div style="margin-left: 30px">
                                 <spam class="text-info" style="color: white">
-                                    Bem-vindo <?php echo $_SESSION["login_Name"] . " " . $_SESSION["login_LastName"]; ?><br />
+                                    Bem-vindo <?php echo $_SESSION["login_Name"] . " " . $_SESSION["login_LastName"]; 
+                                    if($_SESSION["login_Permissions"]=="1"){
+                                            echo " <a style='color: white' href='../View/Catalogo.php'>  Consultar Catalogo</a>";
+                                        } ?><br />
                                 </spam>
                                 <spam><a href="../View/Logout.php" style="color: white">Logout</a></spam>
                             </div>
@@ -48,6 +51,20 @@ if (isset($_SESSION["login"])) {
                     </div>
                 </div>
             </div>
+            
+            
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span10 offset1">
+                        <div style="background-color:#2E8BCC; text-align: center;">
+                            <?php
+                            include_once '../View/SuggestionTopCD.php';
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div style="margin-left: 300px;">
                 <iframe src="arqsi-last.fm/trabalho1.html" width="600" height="600" frameBorder="0" style="overflow-x: hidden; overflow-y: hidden;"></iframe>
             </div>
