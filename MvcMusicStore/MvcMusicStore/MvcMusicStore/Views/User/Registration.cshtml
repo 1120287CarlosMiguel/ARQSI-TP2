@@ -37,12 +37,12 @@
             {
                 var crypto = new SimpleCrypto.PBKDF2();
 
-<<<<<<< HEAD
+
                 WebSecurity.CreateUserAndAccount(username, password, null, false);
                 Roles.AddUserToRole(username, "Members");
-=======
+
                 WebSecurity.CreateUserAndAccount("Loja", username, password, false);//para enviar email
->>>>>>> origin/master
+
                 WebSecurity.Login(username, password, true);
                 
                 errorMessage = String.Format("{0} created.", username);
